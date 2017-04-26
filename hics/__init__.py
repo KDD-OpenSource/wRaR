@@ -1,1 +1,1 @@
-from hics import contrast_meassure, divergences
+from hics import contrast_measure, divergences

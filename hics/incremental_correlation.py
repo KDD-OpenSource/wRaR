@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import sys
 from random import randint
-from hics.contrast_meassure import HiCS
+from hics.contrast_measure import HiCS
 from hics.scored_slices import ScoredSlices
 from hics.result_storage import DefaultResultStorage
 
@@ -20,6 +20,8 @@ class IncrementalCorrelation:
     self.result_storage = result_storage
 
   def _update_relevancy_table(self, new_relevancies):
+    """Updates relevancies by averaging it with existing values
+    """
     current_relevancies = self.result_storage.get_relevancies()
 
     new_index = [index for index in new_relevancies.index if index not in current_relevancies.index]
@@ -79,6 +81,9 @@ class IncrementalCorrelation:
     return slices_store
 
   def update_bivariate_relevancies(self, runs=5):
+    """Reruns relevancy calculation of individual features toward the target. Result will be averaged with
+    previous values to update the relevancy score
+    """
     new_slices = {}
     new_scores = {(feature,): {'relevancy': 0, 'iteration': 0} for feature in self.features}
 
@@ -99,6 +104,14 @@ class IncrementalCorrelation:
     self._update_slices(new_slices)
 
   def update_multivariate_relevancies(self, fixed_features=[], k=5, runs=5):
+    """Reruns relevancy calculations for subsets (multivariate), updating existing values.
+    Keyword arguments:
+    fixed_features -- List of features to be included in every tested subset. Counts into k, leaving
+                      k - len(fixed_features) variable components. If len(fixed_features) > k, only
+                      fixed_features is used
+    k -- the maximal subset size
+    runs -- the number of iterations to run
+    """
     new_slices = {}
     new_scores = {}
 
@@ -131,6 +144,11 @@ class IncrementalCorrelation:
     self._update_slices(new_slices)
 
   def update_redundancies(self, k=5, runs=10):
+    """Reruns redundancy calculations, updating existing values.
+    Keyword arguments:
+    k -- the maximal subset size
+    runs -- the number of iterations to run
+    """
     new_redundancies = pd.DataFrame(data=0, columns=self.features, index=self.features)
     new_weights = pd.DataFrame(data=0, columns=self.features, index=self.features)
 
