@@ -1,3 +1,5 @@
+# Created by Marcus Pappik
+
 import numpy as np
 import pandas as pd
 from hics.slice_similarity import continuous_similarity_matrix, categorical_similarity_matrix

@@ -1,6 +1,8 @@
+# Created by Marcus Pappik
+
 import numpy as np
 import pandas as pd
-from hics.divergences import KLD, KS
+from rar.hics.divergences import KLD, KS
 import math
 from random import randint, shuffle
 
