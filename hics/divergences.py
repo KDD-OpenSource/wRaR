@@ -5,6 +5,8 @@ import pandas as pd
 
 
 def KLD(P: pd.DataFrame, Q: pd.DataFrame, homogenous=False):
+    """Kullback-Leibler divergence
+    """
     if not homogenous:
         P = P.loc[P['value'].isin(Q['value']), ].reset_index(drop=True)
         Q = Q.loc[Q['value'].isin(P['value']), ].reset_index(drop=True)
@@ -12,6 +14,8 @@ def KLD(P: pd.DataFrame, Q: pd.DataFrame, homogenous=False):
 
 
 def JSD(P: pd.DataFrame, Q: pd.DataFrame):
+    """Jensen-Shannon divergence
+    """
     P = P.loc[P['value'].isin(Q['value']), ].reset_index(drop=True)
     Q = Q.loc[Q['value'].isin(P['value']), ].reset_index(drop=True)
     M = pd.DataFrame({'probability': (P.probability + Q.probability) * 0.5})
@@ -19,6 +23,8 @@ def JSD(P: pd.DataFrame, Q: pd.DataFrame):
 
 
 def KS(P: pd.DataFrame, Q: pd.DataFrame, should_normalize=False, max_divergence=1, min_divergence=0):
+    """Kolmogorov–Smirnov test
+    """
     current_divergence = 0
 
     cutpoints = np.random.rand(50) * (Q.iloc[-1]['value'] - Q.iloc[0]['value']) + Q.iloc[-1]['value']
