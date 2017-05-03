@@ -2,12 +2,12 @@ from setuptools import setup
 
 
 setup(
-    name='hics',
+    name='csrar',
     version='0.19',
-    author='Marcus Pappik',
+    author='Daniel Thevessen',
     install_requires=[
         'pandas',
         'numpy'
     ],
-    packages=['hics']
+    packages=['rar', 'hics']
 )

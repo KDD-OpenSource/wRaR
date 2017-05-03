@@ -1,3 +1,5 @@
+# Created by Marcus Pappik
+
 import numpy as np
 import pandas as pd
 from hics.slice_similarity import continuous_similarity_matrix, categorical_similarity_matrix
@@ -6,11 +8,13 @@ from hics.slice_selection import select_by_similarity
 
 class ScoredSlices:
     def __init__(self, categorical, continuous, to_keep=5, threshold=None):
-        self.continuous = {feature: pd.DataFrame(columns=['to_value', 'from_value'])
-            for feature in continuous}
+        self.continuous = {
+            feature: pd.DataFrame(columns=['to_value', 'from_value']) for feature in continuous
+        }
 
-        self.categorical = {feature['name']: pd.DataFrame(columns=feature['values'])
-            for feature in categorical}
+        self.categorical = {
+            feature['name']: pd.DataFrame(columns=feature['values']) for feature in categorical
+        }
 
         self.scores = pd.Series()
         self.to_keep = to_keep
@@ -87,12 +91,14 @@ class ScoredSlices:
         selected = self.select_slices(similarity)
 
         if self.categorical:
-            self.categorical = {key: df.loc[selected, :].reset_index(drop=True)
-                for key, df in self.categorical.items()}
+            self.categorical = {
+                key: df.loc[selected, :].reset_index(drop=True) for key, df in self.categorical.items()
+            }
 
         if self.continuous:
-            self.continuous = {key: df.loc[selected, :].reset_index(drop=True)
-                for key, df in self.continuous.items()}
+            self.continuous = {
+                key: df.loc[selected, :].reset_index(drop=True) for key, df in self.continuous.items()
+            }
 
         self.scores = self.scores.loc[selected].reset_index(drop=True)
 
@@ -100,7 +106,13 @@ class ScoredSlices:
         continuous_dict = {name: df.to_dict(orient='list') for name, df in self.continuous.items()}
         categorical_dict = {name: df.to_dict(orient='list') for name, df in self.categorical.items()}
         scores_list = self.scores.tolist()
-        return {'continuous': continuous_dict, 'categorical': categorical_dict, 'scores': scores_list, 'to_keep': self.to_keep, 'threshold': self.threshold}
+        return {
+            'continuous': continuous_dict,
+            'categorical': categorical_dict,
+            'scores': scores_list,
+            'to_keep': self.to_keep,
+            'threshold': self.threshold
+        }
 
     def to_output(self, name_mapping=None):
         if name_mapping is None:
@@ -116,7 +128,7 @@ class ScoredSlices:
 
             if self.categorical:
                 for feature, df in self.categorical.items():
-                    selected_values = df.columns[df.loc[index, :] == 1].astype(float).tolist()  # TODO: remove that bullshit
+                    selected_values = df.columns[df.loc[index, :] == 1].astype(float).tolist()  # TODO: remove this
                     current_result['features'][name_mapping(feature)] = selected_values
             result.append(current_result)
         return result
@@ -127,10 +139,12 @@ class ScoredSlices:
 
     @staticmethod
     def from_dict(dictionary):
-        continuous = {name: pd.DataFrame(description)
-            for name, description in dictionary['continuous'].items()}
-        categorical = {name: pd.DataFrame(description)
-            for name, description in dictionary['categorical'].items()}
+        continuous = {
+            name: pd.DataFrame(description) for name, description in dictionary['continuous'].items()
+        }
+        categorical = {
+            name: pd.DataFrame(description) for name, description in dictionary['categorical'].items()
+        }
         scores_series = pd.Series(dictionary['scores'])
 
         slices = ScoredSlices([], [], to_keep=dictionary['to_keep'], threshold=dictionary['threshold'])

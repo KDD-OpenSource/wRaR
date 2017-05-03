@@ -1,3 +1,5 @@
+# Created by Marcus Pappik
+
 import numpy as np
 import pandas as pd
 import sys
@@ -32,7 +34,12 @@ class IncrementalCorrelation:
                                          columns=current_relevancies.columns)
         current_relevancies = current_relevancies.append(relevancy_apppend)
 
-        current_relevancies.loc[new_relevancies.index, 'relevancy'] = (current_relevancies.iteration / (current_relevancies.iteration + new_relevancies.iteration)) * current_relevancies.relevancy + (new_relevancies.iteration / (current_relevancies.iteration + new_relevancies.iteration)) * new_relevancies.relevancy
+        current_relevancies.loc[new_relevancies.index, 'relevancy'] = \
+            (current_relevancies.iteration / (current_relevancies.iteration + new_relevancies.iteration)) \
+            * current_relevancies.relevancy \
+            + \
+            (new_relevancies.iteration / (current_relevancies.iteration + new_relevancies.iteration)) \
+            * new_relevancies.relevancy
         current_relevancies.loc[new_relevancies.index, 'iteration'] += new_relevancies.iteration
 
         self.result_storage.update_relevancies(current_relevancies)
@@ -74,7 +81,12 @@ class IncrementalCorrelation:
     def _add_slices_to_dict(self, subspace, slices, slices_store):
         subspace_tuple = tuple(sorted(subspace))
         if subspace_tuple not in slices_store:
-            categorical = [{'name': ft, 'values': self.subspace_contrast.get_values(ft)} for ft in subspace if self.subspace_contrast.get_type(ft) == 'categorical']
+            categorical = [
+                {
+                    'name': ft,
+                    'values': self.subspace_contrast.get_values(ft)
+                }
+                for ft in subspace if self.subspace_contrast.get_type(ft) == 'categorical']
             continuous = [ft for ft in subspace if self.subspace_contrast.get_type(ft) == 'continuous']
             slices_store[subspace_tuple] = ScoredSlices(categorical, continuous)
 
@@ -88,7 +100,8 @@ class IncrementalCorrelation:
         for i in range(runs):
             for feature in self.features:
                 subspace_tuple = (feature,)
-                subspace_score, subspace_slices = self.subspace_contrast.calculate_contrast([feature], self.target, True)
+                subspace_score, subspace_slices = self.subspace_contrast.calculate_contrast([feature], self.target,
+                                                                                            True)
 
                 new_slices = self._add_slices_to_dict([feature], subspace_slices, new_slices)
 
@@ -137,7 +150,7 @@ class IncrementalCorrelation:
         new_redundancies = pd.DataFrame(data=np.inf, columns=self.features, index=self.features)
         new_weights = pd.DataFrame(data=0, columns=self.features, index=self.features)
 
-        k = min(k, len(self.features)-1)
+        k = min(k, len(self.features) - 1)
 
         for i in range(runs):
             number_features = randint(1, k)

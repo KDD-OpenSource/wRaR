@@ -1,3 +1,5 @@
+# Created by Marcus Pappik
+
 import numpy as np
 import pandas as pd
 
@@ -33,7 +35,7 @@ def continuous_similarity_matrix(dfs):
     min_volumn[min_volumn <= 0] = 1
     overlap[overlap < 0] = 0
 
-    return overlap/min_volumn
+    return overlap / min_volumn
 
 
 def categorical_similarity_matrix(dfs):
@@ -48,9 +50,10 @@ def categorical_similarity_matrix(dfs):
     for index, df in dfs.items():
 
         data_array = np.array([np.array(df).tolist()] * len(df))
-        size_array = np.apply_along_axis(lambda x: (x*1).sum(), 2, data_array)
+        size_array = np.apply_along_axis(lambda x: (x * 1).sum(), 2, data_array)
 
-        current_overlap = np.apply_along_axis(lambda x: (x*1).sum(), 2, np.logical_and(data_array, data_array.transpose(1, 0, 2)))
+        current_overlap = np.apply_along_axis(lambda x: (x * 1).sum(), 2,
+                                              np.logical_and(data_array, data_array.transpose(1, 0, 2)))
 
         if not overlap.any():
             overlap = current_overlap
@@ -65,4 +68,4 @@ def categorical_similarity_matrix(dfs):
     min_volumn = np.minimum(volumn, volumn.T)
     min_volumn[min_volumn == 0] = 1
 
-    return overlap/min_volumn
+    return overlap / min_volumn

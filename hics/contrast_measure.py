@@ -1,3 +1,5 @@
+# Created by Marcus Pappik
+
 import numpy as np
 import pandas as pd
 from hics.divergences import KLD, KS
@@ -48,7 +50,8 @@ class HiCS:
     def cached_marginal_distribution(self, feature):
         if feature not in self.distributions:
             values, counts = np.unique(self.data[feature], return_counts=True)
-            self.distributions[feature] = pd.DataFrame({'value': values, 'count': counts, 'probability': counts/len(self.data)}).sort_values(by='value')
+            self.distributions[feature] = pd.DataFrame({'value': values, 'count': counts,
+                                                        'probability': counts / len(self.data)}).sort_values(by='value')
         return self.distributions[feature]
 
     def cached_sorted_indices(self, feature):
@@ -57,7 +60,7 @@ class HiCS:
         return self.sorted_indices[feature]
 
     def calculate_conditional_distribution(self, slice_conditions, target):
-        filter_array = np.array([True]*len(self.data))
+        filter_array = np.array([True] * len(self.data))
 
         for condition in slice_conditions:
             temp_filter = np.array([False] * len(self.data))
@@ -65,8 +68,8 @@ class HiCS:
             filter_array = np.logical_and(temp_filter, filter_array)
 
         values, counts = np.unique(self.data.loc[filter_array, target], return_counts=True)
-        probabilities = counts/filter_array.sum()
-        return pd.DataFrame({'value': values,  'count': counts, 'probability': probabilities}).sort_values(by='value')
+        probabilities = counts / filter_array.sum()
+        return pd.DataFrame({'value': values, 'count': counts, 'probability': probabilities}).sort_values(by='value')
 
     def create_categorical_condition(self, feature, instances_per_dimension):
         feature_distribution = self.cached_marginal_distribution(feature)
@@ -78,7 +81,8 @@ class HiCS:
         for value in shuffled_values:
             if current_sum < instances_per_dimension:
                 selected_values.append(value)
-                current_sum = current_sum + feature_distribution.loc[feature_distribution['value'] == value, 'count'].values
+                current_sum = current_sum + \
+                    feature_distribution.loc[feature_distribution['value'] == value, 'count'].values
             else:
                 break
 
@@ -93,7 +97,8 @@ class HiCS:
 
         start_value = self.data.loc[sorted_feature[start], feature]
         end_value = self.data.loc[sorted_feature[end], feature]
-        indices = self.data.loc[np.logical_and(self.data[feature] >= start_value, self.data[feature] <= end_value), :].index.values.tolist()
+        indices = self.data.loc[np.logical_and(self.data[feature] >= start_value, self.data[feature] <= end_value), :] \
+            .index.values.tolist()
         return {'feature': feature, 'indices': indices, 'from_value': start_value, 'to_value': end_value}
 
     def output_slices(self, score, conditions, slices):
@@ -101,7 +106,7 @@ class HiCS:
             ft = condition['feature']
 
             if self.types[ft] == 'categorical':
-                to_append = [1*(value in condition['values']) for value in self.get_values(ft)]
+                to_append = [1 * (value in condition['values']) for value in self.get_values(ft)]
                 if ft in slices['features']:
                     slices['features'][ft].append(to_append)
                 else:
@@ -123,7 +128,7 @@ class HiCS:
     def calculate_contrast(self, features, target, return_slices=False):
         slices = {'features': {}, 'scores': []}
 
-        instances_per_dimension = max(round(len(self.data) * math.pow(self.alpha, 1/len(features))), 5)
+        instances_per_dimension = max(round(len(self.data) * math.pow(self.alpha, 1 / len(features))), 5)
 
         marginal_distribution = self.cached_marginal_distribution(target)
 
@@ -156,7 +161,7 @@ class HiCS:
             if return_slices:
                 slices = self.output_slices(score, slice_conditions, slices)
 
-        avg_score = sum_scores/iterations
+        avg_score = sum_scores / iterations
 
         if return_slices:
             return avg_score, slices

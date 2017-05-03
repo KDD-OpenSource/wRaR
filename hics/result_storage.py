@@ -1,3 +1,5 @@
+# Created by Marcus Pappik
+
 import numpy as np
 import pandas as pd
 from hics.scored_slices import ScoredSlices
@@ -29,8 +31,11 @@ class DefaultResultStorage(AbstractResultStorage):
     def __init__(self, features: list()):
         self.relevancies = pd.DataFrame(columns=['relevancy', 'iteration'])
 
-        rendundancy_dict = {'redundancy': pd.DataFrame(data=0, columns=features, index=features), 'weight': pd.DataFrame(data=0, columns=features, index=features)}
-        self.redundancies = pd.Panel(rendundancy_dict)
+        redundancy_dict = {
+            'redundancy': pd.DataFrame(data=0, columns=features, index=features),
+            'weight': pd.DataFrame(data=0, columns=features, index=features)
+        }
+        self.redundancies = pd.Panel(redundancy_dict)
 
         self.slices = {}
 
