@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import sys
 from random import randint
-from hics.contrast_meassure import HiCS
+from hics.contrast_measure import HiCS
 from hics.scored_slices import ScoredSlices
 from hics.result_storage import DefaultResultStorage
 
@@ -46,19 +46,22 @@ class IncrementalCorrelation:
 
         self.result_storage.update_relevancies(current_relevancies)
 
-    def _update_redundancy_table(self, new_weights, new_redundancies):
-        current_redundancies, current_weights = self.result_storage.get_redundancies()
+    def _update_redundancy_table(self, new_redundancies):
+        # Calculate bivariate redundancies for fast access
+        bivariate_redundancies = pd.DataFrame(data=np.inf, columns=self.features, index=self.features)
+        bivariate_weights = pd.DataFrame(data=0, columns=self.features, index=self.features)
+        for row in new_redundancies.itertuples():
+            subspace, target = row.Index
+            for ft in subspace:
+                redundancy = min(new_redundancies.loc[ft, target], row.redundancy)
+                new_redundancies.loc[ft, target] = redundancy
+                new_redundancies.loc[target, ft] = redundancy
+                new_weights.loc[ft, target] = new_weights.loc[ft, target] + row.iteration
+                new_weights.loc[target, ft] = new_weights.loc[target, ft] + row.iteration
 
-        current_weights = current_weights.loc[new_weights.index, new_weights.columns]
-        current_redundancies = current_redundancies.loc[new_redundancies.index, new_redundancies.columns]
-
-        current_redundancies[current_weights < 1] = np.inf
-
-        current_redundancies = np.minimum(new_redundancies, current_redundancies)
-        current_weights += new_weights
-
-        current_redundancies[current_weights < 1] = 0
-        self.result_storage.update_redundancies(current_redundancies, current_weights)
+        self.result_storage.update_bivariate_redundancies(bivariate_redundancies, bivariate_weights)
+        # Save subset redundancies for further calculations
+        self.result_storage.update_redundancies(new_redundancies)
 
     def _update_slices(self, new_slices):
         current_slices = self.result_storage.get_slices()
@@ -165,25 +168,28 @@ class IncrementalCorrelation:
         k -- the maximal subset size
         runs -- the number of iterations to run
         """
-        new_redundancies = pd.DataFrame(data=np.inf, columns=self.features, index=self.features)
-        new_weights = pd.DataFrame(data=0, columns=self.features, index=self.features)
+        # new_redundancies = pd.DataFrame(data=np.inf, columns=self.features, index=self.features)
+        # new_weights = pd.DataFrame(data=0, columns=self.features, index=self.features)
+
+        new_scores = {}
 
         k = min(k, len(self.features) - 1)
-
         for i in range(runs):
             number_features = randint(1, k)
             selected_features = np.random.permutation(self.features)[0:number_features + 1].tolist()
             target = selected_features[number_features]
             subspace = selected_features[0:number_features]
 
+            subspace_feature_tuple = (tuple(sorted(subspace)), target)
             score = self.subspace_contrast.calculate_contrast(subspace, target, False)
 
-            for ft in subspace:
-                redundancy = min(new_redundancies.loc[ft, target], score)
-                if redundancy == np.inf:
-                    raise AssertionError('should not be inf')
-                new_redundancies.loc[ft, target] = redundancy
-                new_redundancies.loc[target, ft] = redundancy
-                new_weights.loc[ft, target] = new_weights.loc[ft, target] + 1
-                new_weights.loc[target, ft] = new_weights.loc[target, ft] + 1
-        self._update_redundancy_table(new_weights, new_redundancies)
+            if subspace_feature_tuple not in new_scores:
+                new_scores[subspace_feature_tuple] = {'redundancy': 0, 'iteration': 0}
+
+            new_scores[subspace_feature_tuple]['redundancy'] += score
+            new_scores[subspace_feature_tuple]['iteration'] += 1
+
+        new_redundancies = self._relevancy_dict_to_df(new_scores)
+        new_redundancies.redundancy /= new_redundancies.iteration
+
+        self._update_redundancy_table(new_redundancies)
