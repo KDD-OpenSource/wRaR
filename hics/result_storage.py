@@ -72,8 +72,8 @@ class DefaultResultStorage(AbstractResultStorage):
         self.redundancies = current_redundancies
 
     def update_bivariate_redundancies(self, new_redundancies: pd.DataFrame, new_weights: pd.DataFrame):
-        current_weights = current_weights.loc[new_weights.index, new_weights.columns]
-        current_redundancies = current_redundancies.loc[new_redundancies.index, new_redundancies.columns]
+        current_weights = new_weights.loc[new_weights.index, new_weights.columns]
+        current_redundancies = new_redundancies.loc[new_redundancies.index, new_redundancies.columns]
 
         current_redundancies[current_weights < 1] = np.inf
 

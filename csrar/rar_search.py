@@ -2,6 +2,7 @@
 
 from math import factorial, ceil, log
 from csrar.relevance_optimizer import RelevanceOptimizer
+import collections
 
 
 class RaRSearch(RelevanceOptimizer):
@@ -13,7 +14,7 @@ class RaRSearch(RelevanceOptimizer):
     self.monte_carlo = monte_carlo
     if monte_carlo is None:
       # Estimate for how many runs are necessary for good relevance "coverage"
-      n = 1  # len(correlation.features)
+      n = len(correlation.features)
       self.monte_carlo = RaRSearch.monte_carlo_fixed(runs=n)
 
   def monte_carlo_fixed(runs):
@@ -34,6 +35,7 @@ class RaRSearch(RelevanceOptimizer):
     dim = len(self.correlation.features)
 
     self.correlation.update_multivariate_relevancies(k=self.k, runs=self.monte_carlo(dim))
+    self.correlation.update_redundancies(k=self.k, runs=self.monte_carlo(dim))
     return self._calculate_ranking()
 
   def _calculate_ranking(self):
@@ -64,9 +66,15 @@ class RaRSearch(RelevanceOptimizer):
     if not subset:
       return 0
     else:
-      redundancies = self.correlation.result_storage.redundancies
+      redundancies = self.correlation.result_storage.redundancies.redundancy
 
-      
+      subsets = [i for i in redundancies.index if i[1] == feature]
+      intersections = collections.defaultdict(list)
+      for s in subsets:
+          intersections[len(set(subset).intersection(set((s[0],))))].append(s)
 
-
-      return self.correlation.subspace_contrast.calculate_contrast(subset, feature)
+      if intersections.items():
+        max_subsets = max(intersections.items())
+        return max(redundancies[max_subsets[1]])
+      return 0
+      # return self.correlation.subspace_contrast.calculate_contrast(subset, feature)

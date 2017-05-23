@@ -53,11 +53,11 @@ class IncrementalCorrelation:
         for row in new_redundancies.itertuples():
             subspace, target = row.Index
             for ft in subspace:
-                redundancy = min(new_redundancies.loc[ft, target], row.redundancy)
-                new_redundancies.loc[ft, target] = redundancy
-                new_redundancies.loc[target, ft] = redundancy
-                new_weights.loc[ft, target] = new_weights.loc[ft, target] + row.iteration
-                new_weights.loc[target, ft] = new_weights.loc[target, ft] + row.iteration
+                redundancy = min(bivariate_redundancies.loc[ft, target], row.redundancy)
+                bivariate_redundancies.loc[ft, target] = redundancy
+                bivariate_redundancies.loc[target, ft] = redundancy
+                bivariate_weights.loc[ft, target] = bivariate_weights.loc[ft, target] + row.iteration
+                bivariate_weights.loc[target, ft] = bivariate_weights.loc[target, ft] + row.iteration
 
         self.result_storage.update_bivariate_redundancies(bivariate_redundancies, bivariate_weights)
         # Save subset redundancies for further calculations
