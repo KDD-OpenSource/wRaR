@@ -15,11 +15,10 @@ class RaR:
 
     input_features = [ft for ft in self.data.columns.values if ft != target]
     storage = DefaultResultStorage(input_features)
-    correlation = IncrementalCorrelation(self.data, target, storage)
+    self.correlation = IncrementalCorrelation(self.data, target, storage)
 
-    rar_search = RaRSearch(correlation, k=k, monte_carlo=runs)
-    feature_ranking = rar_search.select_features()
+    rar_search = RaRSearch(self.correlation, k=k, monte_carlo=runs)
+    self.feature_ranking = rar_search.select_features()
 
-    # TODO
-    for (index, rank) in enumerate(feature_ranking):
-        print('{}. {} with a score of {}'.format(index + 1, rank[0], rank[1]))
+    for (index, rank) in enumerate(self.feature_ranking):
+        print('{}. {}'.format(index + 1, rank[0]))

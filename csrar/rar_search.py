@@ -56,10 +56,10 @@ class RaRSearch(RelevanceOptimizer):
 
       nextBest = max(scores, key=lambda s: s[1])
 
-      selected.add(nextBest)
+      selected.add((nextBest[0], len(selected) + 1))
       available.remove(nextBest[0])
 
-    sorted_ranking = sorted(selected, key=lambda f: f[1], reverse=True)
+    sorted_ranking = sorted(selected, key=lambda f: f[1])
     return sorted_ranking
 
   def _calculate_redundancy(self, feature, subset):

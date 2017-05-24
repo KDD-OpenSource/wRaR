@@ -5,6 +5,8 @@ import gurobipy as gb
 
 class RelevanceOptimizer:
 
+  gb.setParam('OutputFlag', 0)
+
   def _calculate_single_feature_relevance(self, columns, relevances):
     m = gb.Model('rar')
     n = len(columns)

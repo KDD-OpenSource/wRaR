@@ -33,6 +33,9 @@ class HiCS:
             else:
                 self.types[column] = 'continuous'
 
+        self.index_lookup = pd.DataFrame(data=np.arange(len(self.data)),
+                                         index=self.data.index)  # Alternative to index.get_loc for custom indices
+
     def get_values(self, feature):
         if feature not in self.values:
             return False
@@ -64,7 +67,7 @@ class HiCS:
 
         for condition in slice_conditions:
             temp_filter = np.array([False] * len(self.data))
-            temp_filter[condition['indices']] = True
+            temp_filter[self.index_lookup[condition['indices']]] = True
             filter_array = np.logical_and(temp_filter, filter_array)
 
         values, counts = np.unique(self.data.loc[filter_array, target], return_counts=True)
