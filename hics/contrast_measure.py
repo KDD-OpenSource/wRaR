@@ -65,9 +65,9 @@ class HiCS:
     def calculate_conditional_distribution(self, slice_conditions, target):
         filter_array = np.array([True] * len(self.data))
 
-        for condition in slice_conditions:
+        for slice_condition in slice_conditions:
             temp_filter = np.array([False] * len(self.data))
-            temp_filter[self.index_lookup[condition['indices']]] = True
+            temp_filter[self.index_lookup.ix[slice_condition['indices']]] = True
             filter_array = np.logical_and(temp_filter, filter_array)
 
         values, counts = np.unique(self.data.loc[filter_array, target], return_counts=True)

@@ -69,12 +69,22 @@ class RaRSearch(RelevanceOptimizer):
       redundancies = self.correlation.result_storage.redundancies.redundancy
 
       subsets = [i for i in redundancies.index if i[1] == feature]
-      intersections = collections.defaultdict(list)
-      for s in subsets:
-          intersections[len(set(subset).intersection(set((s[0],))))].append(s)
+      admissible = [s for s in subsets if len(set(subset).intersection(set((s,)))) > 0]
+      admissible.sort(lambda s: redundancies[s], reverse=True)
 
-      if intersections.items():
-        max_subsets = max(intersections.items())
-        return max(redundancies[max_subsets[1]])
-      return 0
-      # return self.correlation.subspace_contrast.calculate_contrast(subset, feature)
+      def is_justified(head, tail):
+        elementsInSet = set((head, )).intersection(set(subset))
+        size = len(elementsInSet)
+        return not any(len(set((s, )).intersect(elementsInSet)) == size for s in tail)
+
+      def select_justified(subsets):
+        if not subsets:
+          return 0
+        head, *tail = subsets
+        if is_justified(head, tail):
+          return redundancies[s]
+        else:
+          select_justified(tail)
+
+      max_justified = select_justified(admissible)
+      return max_justified
