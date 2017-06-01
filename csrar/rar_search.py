@@ -70,12 +70,12 @@ class RaRSearch(RelevanceOptimizer):
 
       subsets = [i for i in redundancies.index if i[1] == feature]
       admissible = [s for s in subsets if len(set(subset).intersection(set((s,)))) > 0]
-      admissible.sort(lambda s: redundancies[s], reverse=True)
+      admissible.sort(key=lambda s: redundancies[s], reverse=True)
 
       def is_justified(head, tail):
         elementsInSet = set((head, )).intersection(set(subset))
         size = len(elementsInSet)
-        return not any(len(set((s, )).intersect(elementsInSet)) == size for s in tail)
+        return not any(elementsInSet.issubset(set((s, ))) for s in tail)
 
       def select_justified(subsets):
         if not subsets:
