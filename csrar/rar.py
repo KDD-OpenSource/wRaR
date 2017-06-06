@@ -24,4 +24,4 @@ class RaR:
     self.feature_ranking = rar_search.select_features()
 
     for (index, rank) in enumerate(self.feature_ranking):
-        print('{}. {}'.format(index + 1, rank[0]))
+        print('{}. {} with a score of {}'.format(index + 1, rank[0], rank[1]))

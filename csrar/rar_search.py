@@ -35,32 +35,30 @@ class RaRSearch(RelevanceOptimizer):
     dim = len(self.correlation.features)
 
     self.correlation.update_multivariate_relevancies(k=self.k, runs=self.monte_carlo(dim))
-    self.correlation.update_redundancies(k=self.k, runs=self.monte_carlo(dim))
     return self._calculate_ranking()
 
   def _calculate_ranking(self):
     feature_relevances = self._calculate_single_feature_relevance(self.correlation.features,
                                                                   self.correlation.result_storage.relevancies.relevancy)
+    feature_redundancies = self._calculate_redundancies(self.correlation.features, feature_relevances)
 
-    available = set(self.correlation.features)
-    selected = set()
+    def score(feature):
+      relevance = feature_relevances[feature]
+      redundancy = feature_redundancies[feature]
+      # Rank features using f-score on (1-redundancy) and relevancy
+      return (feature, 2 * (1 - redundancy) * relevance / ((1 - redundancy) + relevance))
+    scores = map(score, self.correlation.features)
 
-    while available:  # not empty
-      def score(feature):
-        relevance = feature_relevances[feature]
-        # Redundancy given already selected features
-        redundancy = self._calculate_redundancy(feature, list(map(lambda f: f[0], selected)))
-        # Rank features using f-score on (1-redundancy) and relevancy
-        return (feature, 2 * (1 - redundancy) * relevance / ((1 - redundancy) + relevance))
-      scores = map(score, available)
-
-      nextBest = max(scores, key=lambda s: s[1])
-
-      selected.add((nextBest[0], len(selected) + 1))
-      available.remove(nextBest[0])
-
-    sorted_ranking = sorted(selected, key=lambda f: f[1])
+    sorted_ranking = sorted(selected, key=lambda f: f[1], reverse=True)
     return sorted_ranking
+
+  def _calculate_redundancies(self, features, relevances):
+    sorted_features = sorted(features, key=lambda f: relevances[f])
+
+    redundancies = {sorted_features[0]: 0}
+    for i in range(1, len(sorted_features)):
+      redundancy = self.correlation.subspace_contrast.calculate_contrast(sorted_features[:i], sorted_features[i])
+      redundancies[sorted_features[i]] = redundancy
 
   def _calculate_redundancy(self, feature, subset):
     if not subset:
