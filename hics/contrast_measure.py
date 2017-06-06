@@ -138,7 +138,7 @@ class HiCS:
         sum_scores = 0
         iterations = self.iterations
 
-        for iteration in range(self.iterations):
+        for iteration in range(iterations):
             slice_conditions = []
 
             for feature in features:

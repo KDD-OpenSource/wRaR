@@ -49,7 +49,7 @@ class RaRSearch(RelevanceOptimizer):
       return (feature, 2 * (1 - redundancy) * relevance / ((1 - redundancy) + relevance))
     scores = map(score, self.correlation.features)
 
-    sorted_ranking = sorted(selected, key=lambda f: f[1], reverse=True)
+    sorted_ranking = sorted(scores, key=lambda f: f[1], reverse=True)
     return sorted_ranking
 
   def _calculate_redundancies(self, features, relevances):
@@ -57,8 +57,10 @@ class RaRSearch(RelevanceOptimizer):
 
     redundancies = {sorted_features[0]: 0}
     for i in range(1, len(sorted_features)):
+      print('{} out of {}'.format(i, len(sorted_features)))
       redundancy = self.correlation.subspace_contrast.calculate_contrast(sorted_features[:i], sorted_features[i])
       redundancies[sorted_features[i]] = redundancy
+    return redundancies
 
   def _calculate_redundancy(self, feature, subset):
     if not subset:
