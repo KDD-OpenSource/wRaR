@@ -3,6 +3,8 @@
 from hics.result_storage import DefaultResultStorage
 from hics.incremental_correlation import IncrementalCorrelation
 from csrar.rar_search import RaRSearch
+import pandas as pd
+import numpy as np
 
 
 class RaR:
@@ -11,7 +13,13 @@ class RaR:
     self.correlation = None
     self.feature_ranking = None
 
-  def run(self, target, k=5, runs=None):
+  def run(self, target, k=5, runs=None, cost_matrix=None):
+    if cost_matrix:
+        assert cost_matrix is pd.DataFrame and len(cost_matrix.index) == len(cost_matrix.columns), \
+            'Cost matrix needs to be a square-form pandas.DataFrame!'
+        uniques = set(np.unique(self.data[target]))
+        assert uniques == set(cost_matrix.columns) and uniques == set(cost_matrix.index)
+
     if runs:
         runs = RaRSearch.monte_carlo_fixed(runs=runs)
 
