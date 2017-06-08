@@ -11,7 +11,7 @@ class RaR:
     self.correlation = None
     self.feature_ranking = None
 
-  def run(self, target, k=5, runs=None):
+  def run(self, target, k=5, runs=None, split_iterations=3):
     if runs:
         runs = RaRSearch.monte_carlo_fixed(runs=runs)
 
@@ -20,7 +20,7 @@ class RaR:
         storage = DefaultResultStorage(input_features)
         self.correlation = IncrementalCorrelation(self.data, target, storage)
 
-    rar_search = RaRSearch(self.correlation, k=k, monte_carlo=runs)
+    rar_search = RaRSearch(self.correlation, k=k, monte_carlo=runs, split_iterations=split_iterations)
     self.feature_ranking = rar_search.select_features()
 
     for (index, rank) in enumerate(self.feature_ranking):
