@@ -8,7 +8,7 @@ from random import randint, shuffle
 
 
 class HiCS:
-    def __init__(self, data, alpha, iterations, continuous_divergence=KS, categorical_divergence=KLD):
+    def __init__(self, data, alpha, iterations, continuous_divergence=KS, categorical_divergence=KLD, cost_matrix=None):
         self.iterations = iterations
         self.alpha = alpha
         self.data = data
@@ -16,6 +16,7 @@ class HiCS:
         self.continuous_divergence = continuous_divergence
         self.sorted_indices = pd.DataFrame()
         self.distributions = {}
+        self.cost_matrix = cost_matrix
 
         self.types = {}
         self.values = {}
@@ -155,7 +156,7 @@ class HiCS:
                 continue
 
             if self.types[target] == 'categorical':
-                score = self.categorical_divergence(conditional_distribution, marginal_distribution)
+                score = self.categorical_divergence(conditional_distribution, marginal_distribution, cost_matrix)
             else:
                 score = self.continuous_divergence(marginal_distribution, conditional_distribution)
 

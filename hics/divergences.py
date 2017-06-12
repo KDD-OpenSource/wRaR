@@ -4,13 +4,20 @@ import numpy as np
 import pandas as pd
 
 
-def KLD(P: pd.DataFrame, Q: pd.DataFrame, homogenous=False):
+def KLD(P: pd.DataFrame, Q: pd.DataFrame, homogenous=False, cost_matrix=None):
     """Kullback-Leibler divergence
+    P -- Conditional distribution
+    Q -- Marginal distribution
     """
     if not homogenous:
         P = P.loc[P['value'].isin(Q['value']), ].reset_index(drop=True)
         Q = Q.loc[Q['value'].isin(P['value']), ].reset_index(drop=True)
-    return (P.probability * np.log2(P.probability / Q.probability)).sum()
+
+    divergence_sum = 0
+    for value, p_prob, q_prob in zip(P['value'], P['probability'], Q['probability']):
+        divergence_sum += (p_prob * np.log2(p_prob / q_prob)) * (1 if cost_matrix is None else cost_matrix[value])
+
+    return divergence_sum
 
 
 def JSD(P: pd.DataFrame, Q: pd.DataFrame):

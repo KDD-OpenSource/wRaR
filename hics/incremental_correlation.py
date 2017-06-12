@@ -11,8 +11,8 @@ from hics.result_storage import DefaultResultStorage
 
 class IncrementalCorrelation:
     def __init__(self, data, target, result_storage, iterations=10,
-                 alpha=0.1, drop_discrete=False):
-        self.subspace_contrast = HiCS(data, alpha, iterations)
+                 alpha=0.1, drop_discrete=False, cost_matrix=None):
+        self.subspace_contrast = HiCS(data, alpha, iterations, cost_matrix)
 
         self.target = target
         self.features = [str(ft) for ft in data.columns.values
