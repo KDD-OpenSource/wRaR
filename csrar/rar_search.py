@@ -2,15 +2,17 @@
 
 from math import factorial, ceil, log
 from csrar.relevance_optimizer import RelevanceOptimizer
+import numpy as np
 import collections
+import sys
 
 
 class RaRSearch(RelevanceOptimizer):
 
-  # TODO: RaR Params for non-fixed Monte-Carlo
-  def __init__(self, correlation, k=5, monte_carlo=None):
+  def __init__(self, correlation, k=5, monte_carlo=None, split_iterations=3):
     self.correlation = correlation
     self.k = k
+    self.split_iterations = split_iterations
     self.monte_carlo = monte_carlo
     if monte_carlo is None:
       # Estimate for how many runs are necessary for good relevance "coverage"
@@ -35,32 +37,43 @@ class RaRSearch(RelevanceOptimizer):
     dim = len(self.correlation.features)
 
     self.correlation.update_multivariate_relevancies(k=self.k, runs=self.monte_carlo(dim))
-    self.correlation.update_redundancies(k=self.k, runs=self.monte_carlo(dim))
     return self._calculate_ranking()
 
   def _calculate_ranking(self):
+    print('Running optimizer...')
     feature_relevances = self._calculate_single_feature_relevance(self.correlation.features,
                                                                   self.correlation.result_storage.relevancies.relevancy)
+    print('Optimizer done.')
+    feature_redundancies = self._calculate_redundancies(self.correlation.features, feature_relevances)
 
-    available = set(self.correlation.features)
-    selected = set()
+    def score(feature):
+      relevance = feature_relevances[feature]
+      redundancy = feature_redundancies[feature]
+      # Rank features using f-score on (1-redundancy) and relevancy
+      return (feature, 2 * (1 - redundancy) * relevance / ((1 - redundancy) + relevance))
+    scores = map(score, self.correlation.features)
 
-    while available:  # not empty
-      def score(feature):
-        relevance = feature_relevances[feature]
-        # Redundancy given already selected features
-        redundancy = self._calculate_redundancy(feature, list(map(lambda f: f[0], selected)))
-        # Rank features using f-score on (1-redundancy) and relevancy
-        return (feature, 2 * (1 - redundancy) * relevance / ((1 - redundancy) + relevance))
-      scores = map(score, available)
-
-      nextBest = max(scores, key=lambda s: s[1])
-
-      selected.add((nextBest[0], len(selected) + 1))
-      available.remove(nextBest[0])
-
-    sorted_ranking = sorted(selected, key=lambda f: f[1])
+    sorted_ranking = sorted(scores, key=lambda f: f[1], reverse=True)
     return sorted_ranking
+
+  def _calculate_redundancies(self, features, relevances):
+    sorted_features = sorted(features, key=lambda f: relevances[f])
+
+    redundancies = {sorted_features[0]: 0}
+    for i in range(1, len(sorted_features)):
+      # Progress Counter
+      sys.stdout.write('\rRedundancy: {:.2f}%     '.format(100 * i / len(sorted_features)))
+      sys.stdout.flush()
+
+      shuffled = np.random.permutation(sorted_features[:i])
+      splits = [shuffled[j:j + self.k] for j in range(0, len(shuffled), self.k)]
+
+      subset_redundancies = []
+      for split in splits[:self.split_iterations]:
+        subset_redundancies.append(self.correlation.subspace_contrast.calculate_contrast(split, sorted_features[i]))
+      redundancies[sorted_features[i]] = max(subset_redundancies)
+    print('\rRedundancy: 100.00%')
+    return redundancies
 
   def _calculate_redundancy(self, feature, subset):
     if not subset:

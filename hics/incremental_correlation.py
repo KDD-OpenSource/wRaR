@@ -139,6 +139,10 @@ class IncrementalCorrelation:
         max_k = min(max_k, len(feature_list))
 
         for i in range(runs):
+            # Progress counter
+            sys.stdout.write('\rRelevance: {:.2f}%     '.format(100 * i / runs))
+            sys.stdout.flush()
+
             subspace = fixed_features[:]
 
             if 0 < max_k:
@@ -155,6 +159,7 @@ class IncrementalCorrelation:
             new_scores[subspace_tuple]['iteration'] += 1
 
             new_slices = self._add_slices_to_dict(subspace, subspace_slices, new_slices)
+        print('\rRelevance: 100.00%')
 
         new_relevancies = self._relevancy_dict_to_df(new_scores)
         new_relevancies.relevancy /= new_relevancies.iteration

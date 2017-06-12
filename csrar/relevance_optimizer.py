@@ -1,6 +1,7 @@
 # Created by Daniel Thevessen
 
 import gurobipy as gb
+import sys
 
 
 class RelevanceOptimizer:
