@@ -17,8 +17,20 @@ class RaR:
     #         'Cost matrix needs to be a square-form pandas.DataFrame!'
     #     uniques = set(np.unique(self.data[target]))
     #     assert uniques == set(cost_matrix.columns) and uniques == set(cost_matrix.index)
+
+    # Generate cost matrix compensating class imbalance
+    uniques = np.unique(self.data[target], return_counts=True)
+    ci_matrix = pd.DataFrame(columns=uniques[0])
+    for value, count in uniques:
+        weighting = len(self.data) / count
+        ci_matrix[value] = [weighting]
+
     if cost_matrix:
-        assert cost_matrix.columns == self.data.columns
+        assert cost_matrix.columns == uniques[0]
+    else:
+        cost_matrix = pd.DataFrame(1, index=[0], columns=uniques[0])
+    cost_matrix = ci_matrix * cost_matrix
+    print('Generated cost matrix:\n{}\nOverall cost matrix:\n{}'.format(ci_matrix, cost_matrix))
 
     if runs:
         runs = RaRSearch.monte_carlo_fixed(runs=runs)

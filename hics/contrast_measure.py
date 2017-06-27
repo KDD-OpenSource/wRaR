@@ -156,7 +156,7 @@ class HiCS:
                 continue
 
             if self.types[target] == 'categorical':
-                score = self.categorical_divergence(conditional_distribution, marginal_distribution, cost_matrix)
+                (score, deviations) = self.categorical_divergence(conditional_distribution, marginal_distribution)
             else:
                 score = self.continuous_divergence(marginal_distribution, conditional_distribution)
 
