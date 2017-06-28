@@ -5,10 +5,11 @@ import pandas as pd
 from hics.divergences import KLD, KS
 import math
 from random import randint, shuffle
+from collections import defaultdict
 
 
 class HiCS:
-    def __init__(self, data, alpha, iterations, continuous_divergence=KS, categorical_divergence=KLD, cost_matrix=None):
+    def __init__(self, data, alpha, iterations, continuous_divergence=KS, categorical_divergence=KLD):
         self.iterations = iterations
         self.alpha = alpha
         self.data = data
@@ -16,7 +17,6 @@ class HiCS:
         self.continuous_divergence = continuous_divergence
         self.sorted_indices = pd.DataFrame()
         self.distributions = {}
-        self.cost_matrix = cost_matrix
 
         self.types = {}
         self.values = {}
@@ -129,7 +129,7 @@ class HiCS:
 
         return slices
 
-    def calculate_contrast(self, features, target, return_slices=False):
+    def calculate_contrast(self, features, target, return_slices=False, cost_matrix=None):
         slices = {'features': {}, 'scores': []}
 
         instances_per_dimension = max(round(len(self.data) * math.pow(self.alpha, 1 / len(features))), 5)
@@ -145,7 +145,6 @@ class HiCS:
             for feature in features:
                 if self.types[feature] == 'categorical':
                     slice_conditions.append(self.create_categorical_condition(feature, instances_per_dimension))
-
                 else:
                     slice_conditions.append(self.create_continuous_condition(feature, instances_per_dimension))
 
@@ -156,7 +155,12 @@ class HiCS:
                 continue
 
             if self.types[target] == 'categorical':
-                (score, deviations) = self.categorical_divergence(conditional_distribution, marginal_distribution)
+                class_scores = self.categorical_divergence(conditional_distribution, marginal_distribution)
+                # TODO: Use individual divergences
+                score = 0
+
+                for value, d in class_scores.items():
+                    score += d * (cost_matrix[value][0] if cost_matrix is not None else 1)
             else:
                 score = self.continuous_divergence(marginal_distribution, conditional_distribution)
 

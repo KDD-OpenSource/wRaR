@@ -3,6 +3,8 @@
 from hics.result_storage import DefaultResultStorage
 from hics.incremental_correlation import IncrementalCorrelation
 from csrar.rar_search import RaRSearch
+import numpy as np
+import pandas as pd
 
 
 class RaR:
@@ -11,7 +13,7 @@ class RaR:
     self.correlation = None
     self.feature_ranking = None
 
-  def run(self, target, k=5, runs=None, split_iterations=3, cost_matrix=None):
+  def run(self, target, k=5, runs=None, split_iterations=3, cost_matrix=None, compensate_imbalance=False):
     # if cost_matrix:
     #     assert cost_matrix is pd.DataFrame and len(cost_matrix.index) == len(cost_matrix.columns), \
     #         'Cost matrix needs to be a square-form pandas.DataFrame!'
@@ -19,18 +21,19 @@ class RaR:
     #     assert uniques == set(cost_matrix.columns) and uniques == set(cost_matrix.index)
 
     # Generate cost matrix compensating class imbalance
-    uniques = np.unique(self.data[target], return_counts=True)
-    ci_matrix = pd.DataFrame(columns=uniques[0])
-    for value, count in uniques:
-        weighting = len(self.data) / count
-        ci_matrix[value] = [weighting]
+    if compensate_imbalance:
+        values, counts = np.unique(self.data[target], return_counts=True)
+        ci_matrix = pd.DataFrame(columns=values)
+        for value, count in zip(values, counts):
+            weighting = len(self.data) / count
+            ci_matrix[value] = [weighting]
 
-    if cost_matrix:
-        assert cost_matrix.columns == uniques[0]
-    else:
-        cost_matrix = pd.DataFrame(1, index=[0], columns=uniques[0])
-    cost_matrix = ci_matrix * cost_matrix
-    print('Generated cost matrix:\n{}\nOverall cost matrix:\n{}'.format(ci_matrix, cost_matrix))
+        if cost_matrix:
+           assert cost_matrix.columns == values
+        else:
+           cost_matrix = pd.DataFrame(1, index=[0], columns=values)
+        cost_matrix = ci_matrix * cost_matrix
+        print('Generated cost matrix:\n{}\nOverall cost matrix:\n{}'.format(ci_matrix, cost_matrix))
 
     if runs:
         runs = RaRSearch.monte_carlo_fixed(runs=runs)
@@ -38,7 +41,7 @@ class RaR:
     if self.correlation is None or target != self.correlation.target:
         input_features = [ft for ft in self.data.columns.values if ft != target]
         storage = DefaultResultStorage(input_features)
-        self.correlation = IncrementalCorrelation(self.data, target, storage, cost_matrix)
+        self.correlation = IncrementalCorrelation(self.data, target, storage, cost_matrix=cost_matrix)
 
     rar_search = RaRSearch(self.correlation, k=k, monte_carlo=runs, split_iterations=split_iterations)
     self.feature_ranking = rar_search.select_features()
