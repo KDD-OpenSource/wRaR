@@ -139,6 +139,7 @@ class HiCS:
         sum_scores = 0
         iterations = self.iterations
 
+        sum_deviations = defaultdict(lambda: {'sum': 0, 'count': 0})
         for iteration in range(iterations):
             slice_conditions = []
 
@@ -155,12 +156,15 @@ class HiCS:
                 continue
 
             if self.types[target] == 'categorical':
-                class_scores = self.categorical_divergence(conditional_distribution, marginal_distribution)
+                class_scores, deviations = self.categorical_divergence(conditional_distribution, marginal_distribution)
                 # TODO: Use individual divergences
                 score = 0
-
                 for value, d in class_scores.items():
                     score += d * (cost_matrix[value][0] if cost_matrix is not None else 1)
+
+                for value, dev in deviations.items():
+                    sum_deviations[value]['sum'] += dev
+                    sum_deviations[value]['count'] += 1
             else:
                 score = self.continuous_divergence(marginal_distribution, conditional_distribution)
 
@@ -169,9 +173,14 @@ class HiCS:
             if return_slices:
                 slices = self.output_slices(score, slice_conditions, slices)
 
+        avg_deviations = dict([(k, v['sum'] / v['count']) for k, v in sum_deviations.items()])
+        weighted_deviation = 0
+        for value, average in avg_deviations.items():
+            weighted_deviation += average * (cost_matrix[value][0] if cost_matrix is not None else 1)
+
         avg_score = sum_scores / iterations
 
         if return_slices:
-            return avg_score, slices
+            return weighted_deviation, slices
         else:
-            return avg_score
+            return weighted_deviation

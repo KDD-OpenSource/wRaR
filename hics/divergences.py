@@ -14,10 +14,12 @@ def KLD(P: pd.DataFrame, Q: pd.DataFrame, homogenous=False):
         Q = Q.loc[Q['value'].isin(P['value']), ].reset_index(drop=True)
 
     divergences = {}
+    deviations = {}
     for value, p_prob, q_prob in zip(P['value'], P['probability'], Q['probability']):
         divergences[value] = (p_prob * np.log2(p_prob / q_prob))
+        deviations[value] = abs(q_prob - p_prob) / q_prob
 
-    return divergences
+    return divergences, deviations
 
 
 def JSD(P: pd.DataFrame, Q: pd.DataFrame):
