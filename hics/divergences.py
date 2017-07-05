@@ -16,7 +16,7 @@ def KLD(P: pd.DataFrame, Q: pd.DataFrame, homogenous=False):
     divergences = {}
     deviations = {}
     for value, p_prob, q_prob in zip(P['value'], P['probability'], Q['probability']):
-        divergences[value] = (p_prob * np.log2(p_prob / q_prob))
+        divergences[value] = (p_prob * np.log2(max(p_prob / q_prob, 1e-8)))
         deviations[value] = abs(q_prob - p_prob) / q_prob
 
     return divergences, deviations

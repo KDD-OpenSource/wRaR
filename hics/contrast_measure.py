@@ -157,7 +157,7 @@ class HiCS:
 
             if self.types[target] == 'categorical':
                 class_scores, deviations = self.categorical_divergence(conditional_distribution, marginal_distribution)
-                # TODO: Use individual divergences
+
                 score = 0
                 for value, d in class_scores.items():
                     score += d * (cost_matrix[value][0] if cost_matrix is not None else 1)
@@ -173,14 +173,22 @@ class HiCS:
             if return_slices:
                 slices = self.output_slices(score, slice_conditions, slices)
 
-        avg_deviations = dict([(k, v['sum'] / v['count']) for k, v in sum_deviations.items()])
-        weighted_deviation = 0
-        for value, average in avg_deviations.items():
-            weighted_deviation += average * (cost_matrix[value][0] if cost_matrix is not None else 1)
-
+        # Primary measure (correlation)
         avg_score = sum_scores / iterations
 
+        # cost_matrix is not None if target is class, apply cost then
+        if cost_matrix is not None:
+            # Average deviations, compare to cost
+            normalized_cost = cost_matrix.apply(lambda i: i / i.sum(), axis=1)
+            deviations_df = pd.DataFrame(columns=cost_matrix.columns, index=cost_matrix.index).fillna(0)
+            for k, v in sum_deviations.items():
+                deviations_df.loc[0, k] = v['sum'] / v['count']
+            deviations_df = deviations_df.apply(lambda i: i / i.sum(), axis=1).clip(lower=1e-8)
+            class_divergence = (deviations_df * np.log2(deviations_df / normalized_cost)).sum(axis=1)[0]
+
+            avg_score = 10**-class_divergence * avg_score
+
         if return_slices:
-            return weighted_deviation, slices
+            return avg_score, slices
         else:
-            return weighted_deviation
+            return avg_score
