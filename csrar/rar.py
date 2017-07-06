@@ -25,7 +25,7 @@ class RaR:
         values, counts = np.unique(self.data[target], return_counts=True)
         ci_matrix = pd.DataFrame(columns=values)
         for value, count in zip(values, counts):
-            weighting = len(self.data) / count
+            weighting = (len(self.data) / count) ** 3
             ci_matrix[value] = [weighting]
 
         if cost_matrix:
@@ -41,7 +41,8 @@ class RaR:
     if self.correlation is None or target != self.correlation.target:
         input_features = [ft for ft in self.data.columns.values if ft != target]
         storage = DefaultResultStorage(input_features)
-        self.correlation = IncrementalCorrelation(self.data, target, storage, cost_matrix=cost_matrix)
+        self.correlation = IncrementalCorrelation(self.data, target, storage,
+                                                  cost_matrix=(cost_matrix if compensate_imbalance else None))
 
     rar_search = RaRSearch(self.correlation, k=k, monte_carlo=runs, split_iterations=split_iterations)
     self.feature_ranking = rar_search.select_features()
