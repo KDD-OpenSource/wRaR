@@ -13,7 +13,7 @@ class RaR:
     self.correlation = None
     self.feature_ranking = None
 
-  def run(self, target, k=5, runs=None, split_iterations=3, cost_matrix=None, compensate_imbalance=False):
+  def run(self, target, k=5, runs=None, split_iterations=3, cost_matrix=None, compensate_imbalance=False, weight_mod=1):
     # if cost_matrix:
     #     assert cost_matrix is pd.DataFrame and len(cost_matrix.index) == len(cost_matrix.columns), \
     #         'Cost matrix needs to be a square-form pandas.DataFrame!'
@@ -25,7 +25,7 @@ class RaR:
         values, counts = np.unique(self.data[target], return_counts=True)
         ci_matrix = pd.DataFrame(columns=values)
         for value, count in zip(values, counts):
-            weighting = len(self.data) / count
+            weighting = (len(self.data) / count) ** weight_mod
             ci_matrix[value] = [weighting]
 
         if cost_matrix:
