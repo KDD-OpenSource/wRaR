@@ -27,7 +27,7 @@ class HiCS:
                 self.types[column] = 'categorical'
                 self.values[column] = unique_values
 
-            elif len(unique_values) < 15:
+            elif len(unique_values) < 30:
                 self.types[column] = 'categorical'
                 self.values[column] = unique_values
 
@@ -129,7 +129,7 @@ class HiCS:
 
         return slices
 
-    def calculate_contrast(self, features, target, return_slices=False, cost_matrix=None):
+    def calculate_contrast(self, features, target, return_slices=False, cost_matrix=None, weight_mod=1):
         slices = {'features': {}, 'scores': []}
 
         instances_per_dimension = max(round(len(self.data) * math.pow(self.alpha, 1 / len(features))), 5)
@@ -179,14 +179,13 @@ class HiCS:
         # cost_matrix is not None if target is class, apply cost then
         if cost_matrix is not None:
             # Average deviations, compare to cost
-            normalized_cost = cost_matrix.apply(lambda i: i / i.sum(), axis=1)
+            # normalized_cost = cost_matrix.apply(lambda i: i / i.sum(), axis=1)
             deviations_df = pd.DataFrame(columns=cost_matrix.columns, index=cost_matrix.index).fillna(0)
             for k, v in sum_deviations.items():
                 deviations_df.loc[0, k] = v['sum'] / v['count']
-            deviations_df = deviations_df.apply(lambda i: i / i.sum(), axis=1).clip(lower=1e-8)
-            class_divergence = (deviations_df * np.log2(deviations_df / normalized_cost)).sum(axis=1)[0]
+            dev_score = (cost_matrix * deviations_df).iloc[0].sum()
 
-            avg_score = 10**-class_divergence * avg_score
+            avg_score = dev_score * avg_score
 
         if return_slices:
             return avg_score, slices

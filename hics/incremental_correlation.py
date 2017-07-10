@@ -11,13 +11,14 @@ from hics.result_storage import DefaultResultStorage
 
 class IncrementalCorrelation:
     def __init__(self, data, target, result_storage, iterations=10,
-                 alpha=0.1, drop_discrete=False, cost_matrix=None):
+                 alpha=0.1, drop_discrete=False, cost_matrix=None, weight_mod=1):
         self.subspace_contrast = HiCS(data, alpha, iterations)
 
         self.target = target
         self.features = [str(ft) for ft in data.columns.values
                          if str(ft) != target]
         self.cost_matrix = cost_matrix
+        self.weight_mod = weight_mod
 
         if drop_discrete:
             self.features = [ft for ft in self.features
@@ -110,7 +111,7 @@ class IncrementalCorrelation:
             for feature in self.features:
                 subspace_tuple = (feature,)
                 subspace_score, subspace_slices = self.subspace_contrast.calculate_contrast(
-                    [feature], self.target, True, cost_matrix=self.cost_matrix)
+                    [feature], self.target, True, cost_matrix=self.cost_matrix, weight_mod=self.weight_mod)
 
                 new_slices = self._add_slices_to_dict([feature], subspace_slices, new_slices)
 
@@ -152,7 +153,7 @@ class IncrementalCorrelation:
 
             subspace_tuple = tuple(sorted(subspace))
             subspace_score, subspace_slices = self.subspace_contrast.calculate_contrast(
-                subspace, self.target, True, cost_matrix=self.cost_matrix)
+                subspace, self.target, True, cost_matrix=self.cost_matrix, weight_mod=1)
 
             if subspace_tuple not in new_scores:
                 new_scores[subspace_tuple] = {'relevancy': 0, 'iteration': 0}

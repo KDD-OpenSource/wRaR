@@ -13,7 +13,7 @@ class RaR:
     self.correlation = None
     self.feature_ranking = None
 
-  def run(self, target, k=5, runs=None, split_iterations=3, cost_matrix=None, compensate_imbalance=False):
+  def run(self, target, k=5, runs=None, split_iterations=3, cost_matrix=None, compensate_imbalance=False, weight_mod=1):
     # if cost_matrix:
     #     assert cost_matrix is pd.DataFrame and len(cost_matrix.index) == len(cost_matrix.columns), \
     #         'Cost matrix needs to be a square-form pandas.DataFrame!'
@@ -25,7 +25,7 @@ class RaR:
         values, counts = np.unique(self.data[target], return_counts=True)
         ci_matrix = pd.DataFrame(columns=values)
         for value, count in zip(values, counts):
-            weighting = (len(self.data) / count) ** 3
+            weighting = (len(self.data) / count) ** weight_mod
             ci_matrix[value] = [weighting]
 
         if cost_matrix:
@@ -42,7 +42,8 @@ class RaR:
         input_features = [ft for ft in self.data.columns.values if ft != target]
         storage = DefaultResultStorage(input_features)
         self.correlation = IncrementalCorrelation(self.data, target, storage,
-                                                  cost_matrix=(cost_matrix if compensate_imbalance else None))
+                                                  cost_matrix=(cost_matrix if compensate_imbalance else None),
+                                                  weight_mod=weight_mod)
 
     rar_search = RaRSearch(self.correlation, k=k, monte_carlo=runs, split_iterations=split_iterations)
     self.feature_ranking = rar_search.select_features()
