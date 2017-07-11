@@ -184,8 +184,12 @@ class HiCS:
             for k, v in sum_deviations.items():
                 deviations_df.loc[0, k] = v['sum'] / v['count']
             dev_score = (cost_matrix * deviations_df).iloc[0].sum()
+            print(deviations_df)
 
+            print(avg_score)
             avg_score = dev_score * avg_score
+            print('weighted to')
+            print(avg_score)
 
         if return_slices:
             return avg_score, slices
