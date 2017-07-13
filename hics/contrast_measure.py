@@ -160,7 +160,7 @@ class HiCS:
 
                 score = 0
                 for value, d in class_scores.items():
-                    score += d * (cost_matrix[value][0] if cost_matrix is not None else 1)
+                    score += d
 
                 for value, dev in deviations.items():
                     sum_deviations[value]['sum'] += dev
@@ -184,8 +184,7 @@ class HiCS:
             for k, v in sum_deviations.items():
                 deviations_df.loc[0, k] = v['sum'] / v['count']
             dev_score = (cost_matrix * deviations_df).iloc[0].sum()
-            print(deviations_df)
-
+            print(dev_score)
             print(avg_score)
             avg_score = dev_score * avg_score
             print('weighted to')

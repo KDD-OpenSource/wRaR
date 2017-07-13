@@ -44,6 +44,7 @@ class RaRSearch(RelevanceOptimizer):
     feature_relevances = self._calculate_single_feature_relevance(self.correlation.features,
                                                                   self.correlation.result_storage.relevancies.relevancy)
     print('Optimizer done.')
+    print(feature_relevances)
     feature_redundancies = self._calculate_redundancies(self.correlation.features, feature_relevances)
 
     def score(feature):
