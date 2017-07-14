@@ -1,0 +1,40 @@
+Dataset 2_wrar_1
+Weighted RaR macro-weighted F1: 0.366790687224
+Standard RaR macro-weighted F1: 0.356944639457
+Difference weighted-standard: 0.00984604776742
+Dataset 2_wrar_2
+Weighted RaR macro-weighted F1: 0.351269994032
+Standard RaR macro-weighted F1: 0.326648582204
+Difference weighted-standard: 0.0246214118272
+Dataset 2_wrar_3
+Weighted RaR macro-weighted F1: 0.386995756772
+Standard RaR macro-weighted F1: 0.42062046593
+Difference weighted-standard: -0.0336247091577
+Dataset 2_wrar_4
+Weighted RaR macro-weighted F1: 0.327555134371
+Standard RaR macro-weighted F1: 0.310241276163
+Difference weighted-standard: 0.0173138582083
+Dataset 2_wrar_5
+Weighted RaR macro-weighted F1: 0.358794152692
+Standard RaR macro-weighted F1: 0.345579549554
+Difference weighted-standard: 0.013214603138
+Dataset 2_wrar_6
+Weighted RaR macro-weighted F1: 0.376267012183
+Standard RaR macro-weighted F1: 0.374642383073
+Difference weighted-standard: 0.00162462911008
+Dataset 2_wrar_7
+Weighted RaR macro-weighted F1: 0.40605805151
+Standard RaR macro-weighted F1: 0.393098396374
+Difference weighted-standard: 0.0129596551361
+Dataset 2_wrar_8
+Weighted RaR macro-weighted F1: 0.360574091676
+Standard RaR macro-weighted F1: 0.382941483836
+Difference weighted-standard: -0.0223673921602
+Dataset 2_wrar_9
+Weighted RaR macro-weighted F1: 0.32362380164
+Standard RaR macro-weighted F1: 0.366198558981
+Difference weighted-standard: -0.0425747573413
+Dataset 2_wrar_10
+Weighted RaR macro-weighted F1: 0.346114589465
+Standard RaR macro-weighted F1: 0.337371694353
+Difference weighted-standard: 0.00874289511154

@@ -1,0 +1,16 @@
+Dataset 1_whics_1
+Weighted RaR macro-weighted F1: 0.291414912586
+Standard RaR macro-weighted F1: 0.292403692028
+Difference weighted-standard: -0.000988779441698
+Dataset 1_whics_2
+Weighted RaR macro-weighted F1: 0.281608212348
+Standard RaR macro-weighted F1: 0.289016038365
+Difference weighted-standard: -0.00740782601712
+Dataset 1_whics_3
+Weighted RaR macro-weighted F1: 0.275840613712
+Standard RaR macro-weighted F1: 0.279119682473
+Difference weighted-standard: -0.00327906876089
+Dataset 1_whics_4
+Weighted RaR macro-weighted F1: 0.284100873212
+Standard RaR macro-weighted F1: 0.28034736143
+Difference weighted-standard: 0.00375351178288
