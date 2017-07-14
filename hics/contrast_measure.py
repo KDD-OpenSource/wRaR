@@ -139,7 +139,7 @@ class HiCS:
         sum_scores = 0
         iterations = self.iterations
 
-        sum_deviations = defaultdict(lambda: {'sum': 0, 'count': 0})
+        sum_binary_scores = defaultdict(lambda: {'sum': 0, 'count': 0})
         for iteration in range(iterations):
             slice_conditions = []
 
@@ -156,15 +156,16 @@ class HiCS:
                 continue
 
             if self.types[target] == 'categorical':
-                class_scores, deviations = self.categorical_divergence(conditional_distribution, marginal_distribution)
+                class_scores, binary_scores = self.categorical_divergence(conditional_distribution,
+                                                                          marginal_distribution)
 
                 score = 0
                 for value, d in class_scores.items():
                     score += d
 
-                for value, dev in deviations.items():
-                    sum_deviations[value]['sum'] += dev
-                    sum_deviations[value]['count'] += 1
+                for value, d in binary_scores.items():
+                    sum_binary_scores[value]['sum'] += d
+                    sum_binary_scores[value]['count'] += 1
             else:
                 score = self.continuous_divergence(marginal_distribution, conditional_distribution)
 
@@ -178,17 +179,11 @@ class HiCS:
 
         # cost_matrix is not None if target is class, apply cost then
         if cost_matrix is not None:
-            # Average deviations, compare to cost
-            # normalized_cost = cost_matrix.apply(lambda i: i / i.sum(), axis=1)
-            deviations_df = pd.DataFrame(columns=cost_matrix.columns, index=cost_matrix.index).fillna(0)
-            for k, v in sum_deviations.items():
-                deviations_df.loc[0, k] = v['sum'] / v['count']
-            dev_score = (cost_matrix * deviations_df).iloc[0].sum()
-            print(dev_score)
-            print(avg_score)
-            avg_score = dev_score * avg_score
-            print('weighted to')
-            print(avg_score)
+            binary_div_df = pd.DataFrame(columns=cost_matrix.columns, index=cost_matrix.index).fillna(0)
+            for k, v in sum_binary_scores.items():
+                binary_div_df.loc[0, k] = v['sum'] / v['count']
+            div_score = (cost_matrix * binary_div_df).iloc[0].sum()
+            avg_score = div_score
 
         if return_slices:
             return avg_score, slices
