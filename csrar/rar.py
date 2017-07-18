@@ -45,7 +45,8 @@ class RaR:
                                                   cost_matrix=(cost_matrix if compensate_imbalance else None),
                                                   weight_mod=weight_mod)
 
-    rar_search = RaRSearch(self.correlation, k=k, monte_carlo=runs, split_iterations=split_iterations)
+    rar_search = RaRSearch(self.correlation, k=k, monte_carlo=runs,
+                           split_iterations=split_iterations, cost_matrix=cost_matrix)
     self.feature_ranking = rar_search.select_features()
 
     for (index, rank) in enumerate(self.feature_ranking):

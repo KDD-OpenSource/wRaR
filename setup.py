@@ -10,7 +10,7 @@ with open('LICENSE') as f:
 
 setup(
     name='csrar',
-    version='0.1',
+    version='0.2',
     description='Cost-Sensitive RaR',
     long_description=readme,
     author='Daniel Thevessen',

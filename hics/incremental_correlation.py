@@ -124,7 +124,7 @@ class IncrementalCorrelation:
         self._update_relevancy_table(new_relevancies)
         self._update_slices(new_slices)
 
-    def update_multivariate_relevancies(self, fixed_features=[], k=5, runs=5):
+    def update_multivariate_relevancies(self, fixed_features=[], k=5, runs=5, cost_matrix=None):
         """Reruns relevancy calculations for subsets (multivariate), updating existing values.
         Keyword arguments:
         fixed_features -- List of features to be included in every tested subset. Counts into k, leaving
@@ -135,6 +135,7 @@ class IncrementalCorrelation:
         """
         new_slices = {}
         new_scores = {}
+        class_scores = {}
 
         feature_list = [feature for feature in self.features if feature not in fixed_features]
         max_k = k - len(fixed_features)
@@ -152,8 +153,14 @@ class IncrementalCorrelation:
                 subspace += np.random.permutation(feature_list)[0:end_index].tolist()
 
             subspace_tuple = tuple(sorted(subspace))
-            subspace_score, subspace_slices = self.subspace_contrast.calculate_contrast(
-                subspace, self.target, True, cost_matrix=self.cost_matrix, weight_mod=1)
+
+            if cost_matrix is None:
+                subspace_score, subspace_slices = self.subspace_contrast.calculate_contrast(
+                    subspace, self.target, True, cost_matrix=self.cost_matrix, weight_mod=1)
+            else:
+                # subspace_score is DataFrame with value per class!
+                _, subspace_slices, subspace_score = self.subspace_contrast.calculate_contrast(
+                    subspace, self.target, True, cost_matrix=self.cost_matrix, weight_mod=1)
 
             if subspace_tuple not in new_scores:
                 new_scores[subspace_tuple] = {'relevancy': 0, 'iteration': 0}

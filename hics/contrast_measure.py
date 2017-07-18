@@ -177,13 +177,17 @@ class HiCS:
         # Primary measure (correlation)
         avg_score = sum_scores / iterations
 
-        # cost_matrix is not None if target is class, apply cost then
+        # cost_matrix is not None if target is class, apply cost thend
         if cost_matrix is not None:
             binary_div_df = pd.DataFrame(columns=cost_matrix.columns, index=cost_matrix.index).fillna(0)
             for k, v in sum_binary_scores.items():
                 binary_div_df.loc[0, k] = v['sum'] / v['count']
             div_score = (cost_matrix * binary_div_df).iloc[0].sum() / cost_matrix.iloc[0].sum()
-            avg_score = div_score
+            # avg_score = div_score
+            if return_slices:
+                return div_score, slices, binary_div_df
+            else:
+                return div_score, binary_div_df
 
         if return_slices:
             return avg_score, slices

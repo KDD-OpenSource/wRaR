@@ -9,11 +9,12 @@ import sys
 
 class RaRSearch(RelevanceOptimizer):
 
-  def __init__(self, correlation, k=5, monte_carlo=None, split_iterations=3):
+  def __init__(self, correlation, k=5, monte_carlo=None, split_iterations=3, cost_matrix=None):
     self.correlation = correlation
     self.k = k
     self.split_iterations = split_iterations
     self.monte_carlo = monte_carlo
+    self.cost_matrix = cost_matrix
     if monte_carlo is None:
       # Estimate for how many runs are necessary for good relevance "coverage"
       n = len(correlation.features)
@@ -36,13 +37,14 @@ class RaRSearch(RelevanceOptimizer):
   def select_features(self):
     dim = len(self.correlation.features)
 
-    self.correlation.update_multivariate_relevancies(k=self.k, runs=self.monte_carlo(dim))
+    self.correlation.update_multivariate_relevancies(k=self.k, runs=self.monte_carlo(dim), cost_matrix=self.cost_matrix)
     return self._calculate_ranking()
 
   def _calculate_ranking(self):
     print('Running optimizer...')
     feature_relevances = self._calculate_single_feature_relevance(self.correlation.features,
-                                                                  self.correlation.result_storage.relevancies.relevancy)
+                                                                  self.correlation.result_storage.relevancies.relevancy,
+                                                                  self.cost_matrix)
     print('Optimizer done.')
     print(feature_relevances)
     feature_redundancies = self._calculate_redundancies(self.correlation.features, feature_relevances)
