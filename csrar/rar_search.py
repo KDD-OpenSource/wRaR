@@ -41,12 +41,12 @@ class RaRSearch(RelevanceOptimizer):
     return self._calculate_ranking()
 
   def _calculate_ranking(self):
-    print('Running optimizer...')
+    # print('Running optimizer...')
     feature_relevances = self._calculate_single_feature_relevance(self.correlation.features,
                                                                   self.correlation.result_storage.relevancies.relevancy,
                                                                   self.cost_matrix)
-    print('Optimizer done.')
-    print(feature_relevances)
+    # print('Optimizer done.')
+    # print(feature_relevances)
     feature_redundancies = self._calculate_redundancies(self.correlation.features, feature_relevances)
 
     def score(feature):
@@ -65,8 +65,8 @@ class RaRSearch(RelevanceOptimizer):
     redundancies = {sorted_features[0]: 0}
     for i in range(1, len(sorted_features)):
       # Progress Counter
-      sys.stdout.write('\rRedundancy: {:.2f}%     '.format(100 * i / len(sorted_features)))
-      sys.stdout.flush()
+      # sys.stdout.write('\rRedundancy: {:.2f}%     '.format(100 * i / len(sorted_features)))
+      # sys.stdout.flush()
 
       shuffled = np.random.permutation(sorted_features[:i])
       splits = [shuffled[j:j + self.k] for j in range(0, len(shuffled), self.k)]
@@ -75,7 +75,7 @@ class RaRSearch(RelevanceOptimizer):
       for split in splits[:self.split_iterations]:
         subset_redundancies.append(self.correlation.subspace_contrast.calculate_contrast(split, sorted_features[i]))
       redundancies[sorted_features[i]] = max(subset_redundancies)
-    print('\rRedundancy: 100.00%')
+    # print('\rRedundancy: 100.00%')
     return redundancies
 
   def _calculate_redundancy(self, feature, subset):

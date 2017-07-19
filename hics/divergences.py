@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 
-def KLD(P: pd.DataFrame, Q: pd.DataFrame, homogenous=False):
+def KLD(P: pd.DataFrame, Q: pd.DataFrame, homogenous=False, wrar=False):
     """Kullback-Leibler divergence
     P -- Conditional distribution
     Q -- Marginal distribution
@@ -18,8 +18,9 @@ def KLD(P: pd.DataFrame, Q: pd.DataFrame, homogenous=False):
     for value, p_prob, q_prob in zip(P['value'], P['probability'], Q['probability']):
         p_clipped = max(p_prob, 1e-8)  # To guarantee valid logarithm
         divergences[value] = p_prob * np.log2(p_clipped / q_prob)
-        binary_divergences[value] = p_prob * np.log2(p_clipped / q_prob) + \
-            (1 - p_prob) * np.log2((1 - p_prob) / (1 - q_prob))
+        if wrar:
+            binary_divergences[value] = p_prob * np.log2(p_clipped / q_prob) + \
+                (1 - p_prob) * np.log2(max(1 - p_prob, 1e-8) / max(1 - q_prob, 1e-8))
 
     return divergences, binary_divergences
 

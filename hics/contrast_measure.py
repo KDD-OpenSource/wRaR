@@ -157,7 +157,8 @@ class HiCS:
 
             if self.types[target] == 'categorical':
                 class_scores, binary_scores = self.categorical_divergence(conditional_distribution,
-                                                                          marginal_distribution)
+                                                                          marginal_distribution,
+                                                                          wrar=cost_matrix is not None)
 
                 score = 0
                 for value, d in class_scores.items():
