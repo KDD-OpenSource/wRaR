@@ -4,3 +4,4 @@ scipy
 sklearn
 scikit-learn
 matplotlib
+gurobipy
