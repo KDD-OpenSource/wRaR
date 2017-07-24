@@ -49,7 +49,8 @@ class RelevanceOptimizer:
       class_result = {k: (v.x / var_max) for k, v in solver_variables.items()}
       for k, v in solver_variables.items():
         single_relevances[k] += (v.x / var_max) * (1 if cost_matrix is None else cost_matrix[class_col][0])
-        # print(str(v.x / var_max) + ' weighted to ' + str((v.x / var_max) * (1 if cost_matrix is None else cost_matrix[class_col][0])))
+        # print(str(v.x / var_max) + ' weighted to ' +
+        # str((v.x / var_max) * (1 if cost_matrix is None else cost_matrix[class_col][0])))
 
     for k in single_relevances.keys():
       single_relevances[k] /= (1 if cost_matrix is None else cost_matrix.iloc[0].sum())

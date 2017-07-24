@@ -143,8 +143,8 @@ class IncrementalCorrelation:
 
         for i in range(runs):
             # Progress counter
-            # sys.stdout.write('\rRelevance: {:.2f}%     '.format(100 * i / runs))
-            # sys.stdout.flush()
+            sys.stdout.write('\rRelevance: {:.2f}%     '.format(100 * i / runs))
+            sys.stdout.flush()
 
             subspace = fixed_features[:]
 

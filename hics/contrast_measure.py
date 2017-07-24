@@ -184,7 +184,6 @@ class HiCS:
             for k, v in sum_binary_scores.items():
                 binary_div_df.loc[0, k] = v['sum'] / v['count']
             div_score = (cost_matrix * binary_div_df).iloc[0].sum() / cost_matrix.iloc[0].sum()
-            # avg_score = div_score
             if return_slices:
                 return div_score, slices, binary_div_df
             else:

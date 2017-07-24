@@ -2,7 +2,7 @@
 
 from hics.result_storage import DefaultResultStorage
 from hics.incremental_correlation import IncrementalCorrelation
-from csrar.rar_search import RaRSearch
+from wrar.rar_search import RaRSearch
 import numpy as np
 import pandas as pd
 
@@ -33,7 +33,7 @@ class RaR:
         else:
            cost_matrix = pd.DataFrame(1, index=[0], columns=values)
         cost_matrix = ci_matrix * cost_matrix
-        # print('Generated cost matrix:\n{}\nOverall cost matrix:\n{}'.format(ci_matrix, cost_matrix))
+        print('Generated cost matrix:\n{}\nOverall cost matrix:\n{}'.format(ci_matrix, cost_matrix))
 
     if runs:
         runs = RaRSearch.monte_carlo_fixed(runs=runs)
@@ -49,5 +49,5 @@ class RaR:
                            split_iterations=split_iterations, cost_matrix=cost_matrix)
     self.feature_ranking = rar_search.select_features()
 
-    # for (index, rank) in enumerate(self.feature_ranking):
-    #     print('{}. {} with a score of {}'.format(index + 1, rank[0], rank[1]))
+    for (index, rank) in enumerate(self.feature_ranking):
+        print('{}. {} with a score of {}'.format(index + 1, rank[0], rank[1]))
