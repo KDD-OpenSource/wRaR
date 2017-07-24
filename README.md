@@ -10,7 +10,7 @@ python setup.py install
 ```
 
 ## How to use
-Here is a quick example of running wRaR. It uses pandas dataframes 
+Here is a quick example of running wRaR. It uses [Pandas](http://pandas.pydata.org) dataframes 
 ```
 import wrar
 import pandas as pd
