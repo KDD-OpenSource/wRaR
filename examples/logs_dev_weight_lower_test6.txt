@@ -1,377 +1,0 @@
-Automatic pdb calling has been turned OFF
-Generated cost matrix:
-        0.0       1.0       2.0       3.0
-0  1.025189  1.031094  1.032264  1.024995
-Overall cost matrix:
-        0.0       1.0       2.0       3.0
-0  1.025189  1.031094  1.032264  1.024995
-Relevance: 0.00%     Relevance: 1.00%     Relevance: 2.00%     Relevance: 3.00%     Relevance: 4.00%     Relevance: 5.00%     Relevance: 6.00%     Relevance: 7.00%     Relevance: 8.00%     Relevance: 9.00%     Relevance: 10.00%     Relevance: 11.00%     Relevance: 12.00%     Relevance: 13.00%     Relevance: 14.00%     Relevance: 15.00%     Relevance: 16.00%     Relevance: 17.00%     Relevance: 18.00%     Relevance: 19.00%     Relevance: 20.00%     Relevance: 21.00%     Relevance: 22.00%     Relevance: 23.00%     Relevance: 24.00%     Relevance: 25.00%     Relevance: 26.00%     Relevance: 27.00%     Relevance: 28.00%     Relevance: 29.00%     Relevance: 30.00%     Relevance: 31.00%     Relevance: 32.00%     Relevance: 33.00%     Relevance: 34.00%     Relevance: 35.00%     Relevance: 36.00%     Relevance: 37.00%     Relevance: 38.00%     Relevance: 39.00%     Relevance: 40.00%     Relevance: 41.00%     Relevance: 42.00%     Relevance: 43.00%     Relevance: 44.00%     Relevance: 45.00%     Relevance: 46.00%     Relevance: 47.00%     Relevance: 48.00%     Relevance: 49.00%     Relevance: 50.00%     Relevance: 51.00%     Relevance: 52.00%     Relevance: 53.00%     Relevance: 54.00%     Relevance: 55.00%     Relevance: 56.00%     Relevance: 57.00%     Relevance: 58.00%     Relevance: 59.00%     Relevance: 60.00%     Relevance: 61.00%     Relevance: 62.00%     Relevance: 63.00%     Relevance: 64.00%     Relevance: 65.00%     Relevance: 66.00%     Relevance: 67.00%     Relevance: 68.00%     Relevance: 69.00%     Relevance: 70.00%     Relevance: 71.00%     Relevance: 72.00%     Relevance: 73.00%     Relevance: 74.00%     Relevance: 75.00%     Relevance: 76.00%     Relevance: 77.00%     Relevance: 78.00%     Relevance: 79.00%     Relevance: 80.00%     Relevance: 81.00%     Relevance: 82.00%     Relevance: 83.00%     Relevance: 84.00%     Relevance: 85.00%     Relevance: 86.00%     Relevance: 87.00%     Relevance: 88.00%     Relevance: 89.00%     Relevance: 90.00%     Relevance: 91.00%     Relevance: 92.00%     Relevance: 93.00%     Relevance: 94.00%     Relevance: 95.00%     Relevance: 96.00%     Relevance: 97.00%     Relevance: 98.00%     Relevance: 99.00%     Relevance: 100.00%
-Running optimizer...
-Optimizer done.
-Redundancy: 1.33%     Redundancy: 2.67%     Redundancy: 4.00%     Redundancy: 5.33%     Redundancy: 6.67%     Redundancy: 8.00%     Redundancy: 9.33%     Redundancy: 10.67%     Redundancy: 12.00%     Redundancy: 13.33%     Redundancy: 14.67%     Redundancy: 16.00%     Redundancy: 17.33%     Redundancy: 18.67%     Redundancy: 20.00%     Redundancy: 21.33%     Redundancy: 22.67%     Redundancy: 24.00%     Redundancy: 25.33%     Redundancy: 26.67%     Redundancy: 28.00%     Redundancy: 29.33%     Redundancy: 30.67%     Redundancy: 32.00%     Redundancy: 33.33%     Redundancy: 34.67%     Redundancy: 36.00%     Redundancy: 37.33%     Redundancy: 38.67%     Redundancy: 40.00%     Redundancy: 41.33%     Redundancy: 42.67%     Redundancy: 44.00%     Redundancy: 45.33%     Redundancy: 46.67%     Redundancy: 48.00%     Redundancy: 49.33%     Redundancy: 50.67%     Redundancy: 52.00%     Redundancy: 53.33%     Redundancy: 54.67%     Redundancy: 56.00%     Redundancy: 57.33%     Redundancy: 58.67%     Redundancy: 60.00%     Redundancy: 61.33%     Redundancy: 62.67%     Redundancy: 64.00%     Redundancy: 65.33%     Redundancy: 66.67%     Redundancy: 68.00%     Redundancy: 69.33%     Redundancy: 70.67%     Redundancy: 72.00%     Redundancy: 73.33%     Redundancy: 74.67%     Redundancy: 76.00%     Redundancy: 77.33%     Redundancy: 78.67%     Redundancy: 80.00%     Redundancy: 81.33%     Redundancy: 82.67%     Redundancy: 84.00%     Redundancy: 85.33%     Redundancy: 86.67%     Redundancy: 88.00%     Redundancy: 89.33%     Redundancy: 90.67%     Redundancy: 92.00%     Redundancy: 93.33%     Redundancy: 94.67%     Redundancy: 96.00%     Redundancy: 97.33%     Redundancy: 98.67%     Redundancy: 100.00%
-1. 6 with a score of 0.9994048352009194
-2. 57 with a score of 0.7107813950950702
-3. 0 with a score of 0.5561984529477274
-4. 58 with a score of 0.3235382265151782
-5. 53 with a score of 0.28689747057244785
-6. 63 with a score of 0.28397996902924283
-7. 10 with a score of 0.27364788361278836
-8. 49 with a score of 0.273612342894567
-9. 40 with a score of 0.2735535801445955
-10. 34 with a score of 0.2661136073938515
-11. 56 with a score of 0.26607997112929993
-12. 70 with a score of 0.25546317047609496
-13. 65 with a score of 0.2509398663509679
-14. 24 with a score of 0.23573478015091182
-15. 71 with a score of 0.22771003934038445
-16. 7 with a score of 0.22112386251560393
-17. 43 with a score of 0.22105724038686742
-18. 66 with a score of 0.22072850288882487
-19. 46 with a score of 0.20936178152182414
-20. 67 with a score of 0.18930832536728634
-21. 16 with a score of 0.1750157035618469
-22. 37 with a score of 0.174333548025088
-23. 29 with a score of 0.12629472368950798
-24. 30 with a score of 0.11914957612831498
-25. 25 with a score of 0.11901157241944053
-26. 45 with a score of 0.1152082646091177
-27. 17 with a score of 0.11004705036868093
-28. 19 with a score of 0.11004638619000606
-29. 2 with a score of 0.11004472501528276
-30. 11 with a score of 0.0835479244151879
-31. 3 with a score of 0.08354780399561144
-32. 5 with a score of 0.0759748605662781
-33. 51 with a score of 0.07597349384162906
-34. 44 with a score of 0.0759723652479403
-35. 22 with a score of 0.07596573667877451
-36. 62 with a score of 0.074074702064415
-37. 54 with a score of 0.06824194727844643
-38. 41 with a score of 0.05164539355345917
-39. 26 with a score of 0.051643883226971235
-40. 9 with a score of 0.04952904530137622
-41. 74 with a score of 0.04665432160248121
-42. 52 with a score of 0.041389448552631034
-43. 32 with a score of 0.040765088179755195
-44. 8 with a score of 0.03263685061078766
-45. 28 with a score of 0.031798219392252636
-46. 35 with a score of 0.027117105836921354
-47. 59 with a score of 0.024607362520215146
-48. 72 with a score of 0.024523938233236304
-49. 39 with a score of 0.014970627750639199
-50. 31 with a score of 0.010030276912782706
-51. 15 with a score of 0.008542497349262167
-52. 36 with a score of 0.008442907112019215
-53. 1 with a score of 0.007215774704101595
-54. 33 with a score of 0.0034986696889718703
-55. 69 with a score of 0.0005541885909612816
-56. 48 with a score of 0.0005541885078391758
-57. 23 with a score of 0.00021238613287476377
-58. 21 with a score of 8.892135300660952e-12
-59. 18 with a score of 8.892131596698067e-12
-60. 61 with a score of 8.853480063831143e-12
-61. 68 with a score of 8.80374407230154e-12
-62. 73 with a score of 8.803744051873678e-12
-63. 47 with a score of 8.803740481575989e-12
-64. 38 with a score of 8.803740473784167e-12
-65. 20 with a score of 8.803740468523604e-12
-66. 12 with a score of 8.803740434021146e-12
-67. 60 with a score of 8.803740426302513e-12
-68. 27 with a score of 8.803740426044272e-12
-69. 64 with a score of 8.803740420085277e-12
-70. 42 with a score of 8.803740420063602e-12
-71. 4 with a score of 8.803740410625213e-12
-72. 14 with a score of 8.80374041062521e-12
-73. 13 with a score of 8.803740410625206e-12
-74. 50 with a score of 8.803740410625202e-12
-75. 55 with a score of 8.803740410625194e-12
-                   pre       rec       spe        f1       geo       iba       sup
-
-        0.0       0.60      0.74      0.80      0.66      0.72      0.51      2106
-        1.0       0.31      0.25      0.84      0.28      0.50      0.24      1594
-        2.0       0.29      0.22      0.86      0.25      0.49      0.22      1495
-        3.0       0.62      0.66      0.83      0.64      0.73      0.51      2119
-
-avg / total       0.48      0.50      0.83      0.49      0.63      0.39      7314
-
-Generated cost matrix:
-        0.0       1.0       2.0       3.0
-0  1.104626  1.130296  1.135438  1.103791
-Overall cost matrix:
-        0.0       1.0       2.0       3.0
-0  1.104626  1.130296  1.135438  1.103791
-Relevance: 0.00%     Relevance: 1.00%     Relevance: 2.00%     Relevance: 3.00%     Relevance: 4.00%     Relevance: 5.00%     Relevance: 6.00%     Relevance: 7.00%     Relevance: 8.00%     Relevance: 9.00%     Relevance: 10.00%     Relevance: 11.00%     Relevance: 12.00%     Relevance: 13.00%     Relevance: 14.00%     Relevance: 15.00%     Relevance: 16.00%     Relevance: 17.00%     Relevance: 18.00%     Relevance: 19.00%     Relevance: 20.00%     Relevance: 21.00%     Relevance: 22.00%     Relevance: 23.00%     Relevance: 24.00%     Relevance: 25.00%     Relevance: 26.00%     Relevance: 27.00%     Relevance: 28.00%     Relevance: 29.00%     Relevance: 30.00%     Relevance: 31.00%     Relevance: 32.00%     Relevance: 33.00%     Relevance: 34.00%     Relevance: 35.00%     Relevance: 36.00%     Relevance: 37.00%     Relevance: 38.00%     Relevance: 39.00%     Relevance: 40.00%     Relevance: 41.00%     Relevance: 42.00%     Relevance: 43.00%     Relevance: 44.00%     Relevance: 45.00%     Relevance: 46.00%     Relevance: 47.00%     Relevance: 48.00%     Relevance: 49.00%     Relevance: 50.00%     Relevance: 51.00%     Relevance: 52.00%     Relevance: 53.00%     Relevance: 54.00%     Relevance: 55.00%     Relevance: 56.00%     Relevance: 57.00%     Relevance: 58.00%     Relevance: 59.00%     Relevance: 60.00%     Relevance: 61.00%     Relevance: 62.00%     Relevance: 63.00%     Relevance: 64.00%     Relevance: 65.00%     Relevance: 66.00%     Relevance: 67.00%     Relevance: 68.00%     Relevance: 69.00%     Relevance: 70.00%     Relevance: 71.00%     Relevance: 72.00%     Relevance: 73.00%     Relevance: 74.00%     Relevance: 75.00%     Relevance: 76.00%     Relevance: 77.00%     Relevance: 78.00%     Relevance: 79.00%     Relevance: 80.00%     Relevance: 81.00%     Relevance: 82.00%     Relevance: 83.00%     Relevance: 84.00%     Relevance: 85.00%     Relevance: 86.00%     Relevance: 87.00%     Relevance: 88.00%     Relevance: 89.00%     Relevance: 90.00%     Relevance: 91.00%     Relevance: 92.00%     Relevance: 93.00%     Relevance: 94.00%     Relevance: 95.00%     Relevance: 96.00%     Relevance: 97.00%     Relevance: 98.00%     Relevance: 99.00%     Relevance: 100.00%
-Running optimizer...
-Optimizer done.
-Redundancy: 1.33%     Redundancy: 2.67%     Redundancy: 4.00%     Redundancy: 5.33%     Redundancy: 6.67%     Redundancy: 8.00%     Redundancy: 9.33%     Redundancy: 10.67%     Redundancy: 12.00%     Redundancy: 13.33%     Redundancy: 14.67%     Redundancy: 16.00%     Redundancy: 17.33%     Redundancy: 18.67%     Redundancy: 20.00%     Redundancy: 21.33%     Redundancy: 22.67%     Redundancy: 24.00%     Redundancy: 25.33%     Redundancy: 26.67%     Redundancy: 28.00%     Redundancy: 29.33%     Redundancy: 30.67%     Redundancy: 32.00%     Redundancy: 33.33%     Redundancy: 34.67%     Redundancy: 36.00%     Redundancy: 37.33%     Redundancy: 38.67%     Redundancy: 40.00%     Redundancy: 41.33%     Redundancy: 42.67%     Redundancy: 44.00%     Redundancy: 45.33%     Redundancy: 46.67%     Redundancy: 48.00%     Redundancy: 49.33%     Redundancy: 50.67%     Redundancy: 52.00%     Redundancy: 53.33%     Redundancy: 54.67%     Redundancy: 56.00%     Redundancy: 57.33%     Redundancy: 58.67%     Redundancy: 60.00%     Redundancy: 61.33%     Redundancy: 62.67%     Redundancy: 64.00%     Redundancy: 65.33%     Redundancy: 66.67%     Redundancy: 68.00%     Redundancy: 69.33%     Redundancy: 70.67%     Redundancy: 72.00%     Redundancy: 73.33%     Redundancy: 74.67%     Redundancy: 76.00%     Redundancy: 77.33%     Redundancy: 78.67%     Redundancy: 80.00%     Redundancy: 81.33%     Redundancy: 82.67%     Redundancy: 84.00%     Redundancy: 85.33%     Redundancy: 86.67%     Redundancy: 88.00%     Redundancy: 89.33%     Redundancy: 90.67%     Redundancy: 92.00%     Redundancy: 93.33%     Redundancy: 94.67%     Redundancy: 96.00%     Redundancy: 97.33%     Redundancy: 98.67%     Redundancy: 100.00%
-1. 2 with a score of 0.9995246091705969
-2. 0 with a score of 0.8937548239890778
-3. 34 with a score of 0.7020452743411514
-4. 16 with a score of 0.7018002966657152
-5. 57 with a score of 0.6837916682508389
-6. 5 with a score of 0.6811446045246169
-7. 6 with a score of 0.6811016832476428
-8. 7 with a score of 0.5351830823351372
-9. 49 with a score of 0.5103431271188739
-10. 3 with a score of 0.4816957427673792
-11. 29 with a score of 0.35066216236206527
-12. 73 with a score of 0.3430276668868429
-13. 61 with a score of 0.3065911172743685
-14. 25 with a score of 0.30602554936764714
-15. 48 with a score of 0.28836061830173987
-16. 55 with a score of 0.2802575720294756
-17. 40 with a score of 0.2636048922461168
-18. 66 with a score of 0.2635407555905518
-19. 30 with a score of 0.21900281037101704
-20. 28 with a score of 0.21894740479248623
-21. 53 with a score of 0.21004568247006478
-22. 37 with a score of 0.20094943002833637
-23. 20 with a score of 0.20080885785052766
-24. 23 with a score of 0.18647554696733723
-25. 17 with a score of 0.17460069099643782
-26. 21 with a score of 0.17272348442218668
-27. 65 with a score of 0.167101450960618
-28. 54 with a score of 0.13593123041405467
-29. 46 with a score of 0.13591561673793567
-30. 44 with a score of 0.1358683006488768
-31. 42 with a score of 0.12704797342392926
-32. 64 with a score of 0.1237208986414902
-33. 43 with a score of 0.094533379223057
-34. 13 with a score of 0.08454346852357295
-35. 27 with a score of 0.08384650959559681
-36. 14 with a score of 0.07839598909154215
-37. 45 with a score of 0.07839502993371622
-38. 8 with a score of 0.07135860022091153
-39. 50 with a score of 0.07124949987201581
-40. 35 with a score of 0.06894185533187963
-41. 18 with a score of 0.06062302327093229
-42. 31 with a score of 0.060622306515028
-43. 41 with a score of 0.06062109667762188
-44. 74 with a score of 0.056222604729413275
-45. 51 with a score of 0.05311092051524912
-46. 47 with a score of 0.03711539508688018
-47. 9 with a score of 0.03711517275972472
-48. 38 with a score of 0.0361369742173472
-49. 67 with a score of 0.034923204821337796
-50. 1 with a score of 0.024197789163676316
-51. 39 with a score of 0.019525711645289948
-52. 69 with a score of 0.019354684710199674
-53. 15 with a score of 0.017968567097834988
-54. 19 with a score of 0.014851284842331865
-55. 36 with a score of 0.013310405832894058
-56. 59 with a score of 0.01161548735205945
-57. 4 with a score of 0.010325702718129357
-58. 56 with a score of 1.5103346740844066e-07
-59. 32 with a score of 1.1480130385010482e-09
-60. 62 with a score of 6.183585235182948e-10
-61. 63 with a score of 3.463894108612596e-11
-62. 60 with a score of 3.4596503287269325e-11
-63. 71 with a score of 3.437619954262436e-11
-64. 24 with a score of 3.3982737247477465e-11
-65. 52 with a score of 3.3378828984932855e-11
-66. 70 with a score of 3.334038419676834e-11
-67. 10 with a score of 3.3315437018663686e-11
-68. 33 with a score of 3.319090047373304e-11
-69. 26 with a score of 3.315503076758557e-11
-70. 12 with a score of 3.315247519787662e-11
-71. 58 with a score of 3.31292659176926e-11
-72. 68 with a score of 3.311935838482774e-11
-73. 72 with a score of 3.311166943141901e-11
-74. 11 with a score of 3.3097048537810484e-11
-75. 22 with a score of 3.3097048537810374e-11
-                   pre       rec       spe        f1       geo       iba       sup
-
-        0.0       0.64      0.78      0.82      0.71      0.76      0.56      2106
-        1.0       0.36      0.30      0.85      0.33      0.54      0.28      1594
-        2.0       0.35      0.28      0.87      0.31      0.54      0.27      1495
-        3.0       0.69      0.72      0.87      0.71      0.78      0.60      2119
-
-avg / total       0.54      0.56      0.85      0.54      0.67      0.45      7314
-
-Generated cost matrix:
-        0.0       1.0       2.0       3.0
-0  1.132449  1.165441  1.172072  1.131381
-Overall cost matrix:
-        0.0       1.0       2.0       3.0
-0  1.132449  1.165441  1.172072  1.131381
-Relevance: 0.00%     Relevance: 1.00%     Relevance: 2.00%     Relevance: 3.00%     Relevance: 4.00%     Relevance: 5.00%     Relevance: 6.00%     Relevance: 7.00%     Relevance: 8.00%     Relevance: 9.00%     Relevance: 10.00%     Relevance: 11.00%     Relevance: 12.00%     Relevance: 13.00%     Relevance: 14.00%     Relevance: 15.00%     Relevance: 16.00%     Relevance: 17.00%     Relevance: 18.00%     Relevance: 19.00%     Relevance: 20.00%     Relevance: 21.00%     Relevance: 22.00%     Relevance: 23.00%     Relevance: 24.00%     Relevance: 25.00%     Relevance: 26.00%     Relevance: 27.00%     Relevance: 28.00%     Relevance: 29.00%     Relevance: 30.00%     Relevance: 31.00%     Relevance: 32.00%     Relevance: 33.00%     Relevance: 34.00%     Relevance: 35.00%     Relevance: 36.00%     Relevance: 37.00%     Relevance: 38.00%     Relevance: 39.00%     Relevance: 40.00%     Relevance: 41.00%     Relevance: 42.00%     Relevance: 43.00%     Relevance: 44.00%     Relevance: 45.00%     Relevance: 46.00%     Relevance: 47.00%     Relevance: 48.00%     Relevance: 49.00%     Relevance: 50.00%     Relevance: 51.00%     Relevance: 52.00%     Relevance: 53.00%     Relevance: 54.00%     Relevance: 55.00%     Relevance: 56.00%     Relevance: 57.00%     Relevance: 58.00%     Relevance: 59.00%     Relevance: 60.00%     Relevance: 61.00%     Relevance: 62.00%     Relevance: 63.00%     Relevance: 64.00%     Relevance: 65.00%     Relevance: 66.00%     Relevance: 67.00%     Relevance: 68.00%     Relevance: 69.00%     Relevance: 70.00%     Relevance: 71.00%     Relevance: 72.00%     Relevance: 73.00%     Relevance: 74.00%     Relevance: 75.00%     Relevance: 76.00%     Relevance: 77.00%     Relevance: 78.00%     Relevance: 79.00%     Relevance: 80.00%     Relevance: 81.00%     Relevance: 82.00%     Relevance: 83.00%     Relevance: 84.00%     Relevance: 85.00%     Relevance: 86.00%     Relevance: 87.00%     Relevance: 88.00%     Relevance: 89.00%     Relevance: 90.00%     Relevance: 91.00%     Relevance: 92.00%     Relevance: 93.00%     Relevance: 94.00%     Relevance: 95.00%     Relevance: 96.00%     Relevance: 97.00%     Relevance: 98.00%     Relevance: 99.00%     Relevance: 100.00%
-Running optimizer...
-Optimizer done.
-Redundancy: 1.33%     Redundancy: 2.67%     Redundancy: 4.00%     Redundancy: 5.33%     Redundancy: 6.67%     Redundancy: 8.00%     Redundancy: 9.33%     Redundancy: 10.67%     Redundancy: 12.00%     Redundancy: 13.33%     Redundancy: 14.67%     Redundancy: 16.00%     Redundancy: 17.33%     Redundancy: 18.67%     Redundancy: 20.00%     Redundancy: 21.33%     Redundancy: 22.67%     Redundancy: 24.00%     Redundancy: 25.33%     Redundancy: 26.67%     Redundancy: 28.00%     Redundancy: 29.33%     Redundancy: 30.67%     Redundancy: 32.00%     Redundancy: 33.33%     Redundancy: 34.67%     Redundancy: 36.00%     Redundancy: 37.33%     Redundancy: 38.67%     Redundancy: 40.00%     Redundancy: 41.33%     Redundancy: 42.67%     Redundancy: 44.00%     Redundancy: 45.33%     Redundancy: 46.67%     Redundancy: 48.00%     Redundancy: 49.33%     Redundancy: 50.67%     Redundancy: 52.00%     Redundancy: 53.33%     Redundancy: 54.67%     Redundancy: 56.00%     Redundancy: 57.33%     Redundancy: 58.67%     Redundancy: 60.00%     Redundancy: 61.33%     Redundancy: 62.67%     Redundancy: 64.00%     Redundancy: 65.33%     Redundancy: 66.67%     Redundancy: 68.00%     Redundancy: 69.33%     Redundancy: 70.67%     Redundancy: 72.00%     Redundancy: 73.33%     Redundancy: 74.67%     Redundancy: 76.00%     Redundancy: 77.33%     Redundancy: 78.67%     Redundancy: 80.00%     Redundancy: 81.33%     Redundancy: 82.67%     Redundancy: 84.00%     Redundancy: 85.33%     Redundancy: 86.67%     Redundancy: 88.00%     Redundancy: 89.33%     Redundancy: 90.67%     Redundancy: 92.00%     Redundancy: 93.33%     Redundancy: 94.67%     Redundancy: 96.00%     Redundancy: 97.33%     Redundancy: 98.67%     Redundancy: 100.00%
-1. 2 with a score of 0.9996409335727109
-2. 34 with a score of 0.7443037626284923
-3. 0 with a score of 0.7432054708410543
-4. 53 with a score of 0.5205837373764997
-5. 50 with a score of 0.5040795827221187
-6. 7 with a score of 0.49546032770940385
-7. 6 with a score of 0.44063892914880204
-8. 40 with a score of 0.434449549331935
-9. 67 with a score of 0.4126942595397665
-10. 62 with a score of 0.383168936394707
-11. 57 with a score of 0.3750541521784362
-12. 71 with a score of 0.37010495808315874
-13. 63 with a score of 0.3455276763981636
-14. 24 with a score of 0.32222793235676794
-15. 30 with a score of 0.3020858852928179
-16. 12 with a score of 0.29972260438732146
-17. 66 with a score of 0.2727985142012951
-18. 44 with a score of 0.24295997436478814
-19. 55 with a score of 0.23162801686986936
-20. 29 with a score of 0.231572420656403
-21. 19 with a score of 0.23050694312726971
-22. 48 with a score of 0.21750687284676973
-23. 45 with a score of 0.2045059505448922
-24. 47 with a score of 0.19643608649102395
-25. 25 with a score of 0.19311631372512408
-26. 23 with a score of 0.185718204875569
-27. 41 with a score of 0.1809029094436973
-28. 49 with a score of 0.17978043369264687
-29. 27 with a score of 0.16107465077789374
-30. 37 with a score of 0.15052743788337716
-31. 58 with a score of 0.10802334259567714
-32. 60 with a score of 0.10796133078260947
-33. 74 with a score of 0.10640715269963173
-34. 42 with a score of 0.10593028449271602
-35. 38 with a score of 0.0920842885728804
-36. 56 with a score of 0.08856402481492248
-37. 52 with a score of 0.08856257201484584
-38. 73 with a score of 0.08459391040382386
-39. 46 with a score of 0.07809170602223232
-40. 51 with a score of 0.07108636274513122
-41. 26 with a score of 0.07108242979798315
-42. 21 with a score of 0.06935399585652816
-43. 68 with a score of 0.061711993976181975
-44. 5 with a score of 0.060175395467401145
-45. 17 with a score of 0.0435985041533888
-46. 1 with a score of 0.043598144427799
-47. 65 with a score of 0.04359803565240342
-48. 22 with a score of 0.04086684867653969
-49. 16 with a score of 0.032768192016786664
-50. 14 with a score of 0.026573994091875785
-51. 39 with a score of 0.024104060114706574
-52. 20 with a score of 0.02376101169004153
-53. 36 with a score of 0.018769555635378955
-54. 18 with a score of 0.016683312280907192
-55. 61 with a score of 3.2962640380329645e-10
-56. 10 with a score of 6.618661600794818e-12
-57. 59 with a score of 6.54358260720368e-12
-58. 8 with a score of 6.358964138221001e-12
-59. 31 with a score of 6.355817504405061e-12
-60. 28 with a score of 6.2855636968230915e-12
-61. 11 with a score of 6.26165567162436e-12
-62. 69 with a score of 6.192757920780219e-12
-63. 54 with a score of 6.191579508667747e-12
-64. 3 with a score of 6.131701771241974e-12
-65. 72 with a score of 6.121972760244791e-12
-66. 4 with a score of 6.12197145887077e-12
-67. 33 with a score of 6.121971423035869e-12
-68. 43 with a score of 6.12197130992785e-12
-69. 35 with a score of 6.121971307585969e-12
-70. 32 with a score of 6.121971306119831e-12
-71. 9 with a score of 6.121971285610586e-12
-72. 13 with a score of 6.121971285610582e-12
-73. 70 with a score of 6.121971285610582e-12
-74. 15 with a score of 6.121971285610581e-12
-75. 64 with a score of 6.121971285610577e-12
-                   pre       rec       spe        f1       geo       iba       sup
-
-        0.0       0.66      0.78      0.83      0.71      0.77      0.58      2106
-        1.0       0.39      0.34      0.85      0.36      0.57      0.31      1594
-        2.0       0.36      0.29      0.87      0.32      0.54      0.28      1495
-        3.0       0.70      0.72      0.88      0.71      0.79      0.61      2119
-
-avg / total       0.55      0.57      0.86      0.56      0.68      0.47      7314
-
-Generated cost matrix:
-        0.0       1.0       2.0       3.0
-0  1.282442  1.358253  1.373752  1.280022
-Overall cost matrix:
-        0.0       1.0       2.0       3.0
-0  1.282442  1.358253  1.373752  1.280022
-Relevance: 0.00%     Relevance: 1.00%     Relevance: 2.00%     Relevance: 3.00%     Relevance: 4.00%     Relevance: 5.00%     Relevance: 6.00%     Relevance: 7.00%     Relevance: 8.00%     Relevance: 9.00%     Relevance: 10.00%     Relevance: 11.00%     Relevance: 12.00%     Relevance: 13.00%     Relevance: 14.00%     Relevance: 15.00%     Relevance: 16.00%     Relevance: 17.00%     Relevance: 18.00%     Relevance: 19.00%     Relevance: 20.00%     Relevance: 21.00%     Relevance: 22.00%     Relevance: 23.00%     Relevance: 24.00%     Relevance: 25.00%     Relevance: 26.00%     Relevance: 27.00%     Relevance: 28.00%     Relevance: 29.00%     Relevance: 30.00%     Relevance: 31.00%     Relevance: 32.00%     Relevance: 33.00%     Relevance: 34.00%     Relevance: 35.00%     Relevance: 36.00%     Relevance: 37.00%     Relevance: 38.00%     Relevance: 39.00%     Relevance: 40.00%     Relevance: 41.00%     Relevance: 42.00%     Relevance: 43.00%     Relevance: 44.00%     Relevance: 45.00%     Relevance: 46.00%     Relevance: 47.00%     Relevance: 48.00%     Relevance: 49.00%     Relevance: 50.00%     Relevance: 51.00%     Relevance: 52.00%     Relevance: 53.00%     Relevance: 54.00%     Relevance: 55.00%     Relevance: 56.00%     Relevance: 57.00%     Relevance: 58.00%     Relevance: 59.00%     Relevance: 60.00%     Relevance: 61.00%     Relevance: 62.00%     Relevance: 63.00%     Relevance: 64.00%     Relevance: 65.00%     Relevance: 66.00%     Relevance: 67.00%     Relevance: 68.00%     Relevance: 69.00%     Relevance: 70.00%     Relevance: 71.00%     Relevance: 72.00%     Relevance: 73.00%     Relevance: 74.00%     Relevance: 75.00%     Relevance: 76.00%     Relevance: 77.00%     Relevance: 78.00%     Relevance: 79.00%     Relevance: 80.00%     Relevance: 81.00%     Relevance: 82.00%     Relevance: 83.00%     Relevance: 84.00%     Relevance: 85.00%     Relevance: 86.00%     Relevance: 87.00%     Relevance: 88.00%     Relevance: 89.00%     Relevance: 90.00%     Relevance: 91.00%     Relevance: 92.00%     Relevance: 93.00%     Relevance: 94.00%     Relevance: 95.00%     Relevance: 96.00%     Relevance: 97.00%     Relevance: 98.00%     Relevance: 99.00%     Relevance: 100.00%
-Running optimizer...
-Optimizer done.
-Redundancy: 1.33%     Redundancy: 2.67%     Redundancy: 4.00%     Redundancy: 5.33%     Redundancy: 6.67%     Redundancy: 8.00%     Redundancy: 9.33%     Redundancy: 10.67%     Redundancy: 12.00%     Redundancy: 13.33%     Redundancy: 14.67%     Redundancy: 16.00%     Redundancy: 17.33%     Redundancy: 18.67%     Redundancy: 20.00%     Redundancy: 21.33%     Redundancy: 22.67%     Redundancy: 24.00%     Redundancy: 25.33%     Redundancy: 26.67%     Redundancy: 28.00%     Redundancy: 29.33%     Redundancy: 30.67%     Redundancy: 32.00%     Redundancy: 33.33%     Redundancy: 34.67%     Redundancy: 36.00%     Redundancy: 37.33%     Redundancy: 38.67%     Redundancy: 40.00%     Redundancy: 41.33%     Redundancy: 42.67%     Redundancy: 44.00%     Redundancy: 45.33%     Redundancy: 46.67%     Redundancy: 48.00%     Redundancy: 49.33%     Redundancy: 50.67%     Redundancy: 52.00%     Redundancy: 53.33%     Redundancy: 54.67%     Redundancy: 56.00%     Redundancy: 57.33%     Redundancy: 58.67%     Redundancy: 60.00%     Redundancy: 61.33%     Redundancy: 62.67%     Redundancy: 64.00%     Redundancy: 65.33%     Redundancy: 66.67%     Redundancy: 68.00%     Redundancy: 69.33%     Redundancy: 70.67%     Redundancy: 72.00%     Redundancy: 73.33%     Redundancy: 74.67%     Redundancy: 76.00%     Redundancy: 77.33%     Redundancy: 78.67%     Redundancy: 80.00%     Redundancy: 81.33%     Redundancy: 82.67%     Redundancy: 84.00%     Redundancy: 85.33%     Redundancy: 86.67%     Redundancy: 88.00%     Redundancy: 89.33%     Redundancy: 90.67%     Redundancy: 92.00%     Redundancy: 93.33%     Redundancy: 94.67%     Redundancy: 96.00%     Redundancy: 97.33%     Redundancy: 98.67%     Redundancy: 100.00%
-1. 34 with a score of 0.9991857457610882
-2. 2 with a score of 0.9521538908984581
-3. 29 with a score of 0.8125047028741718
-4. 6 with a score of 0.5702809912294462
-5. 57 with a score of 0.5658577582710241
-6. 3 with a score of 0.49940580836853443
-7. 42 with a score of 0.4545251175095537
-8. 65 with a score of 0.45440036966467223
-9. 58 with a score of 0.3998386181200256
-10. 71 with a score of 0.3255441425739992
-11. 38 with a score of 0.32551635855743527
-12. 0 with a score of 0.301287248348641
-13. 63 with a score of 0.27167492266690907
-14. 62 with a score of 0.2682217246251647
-15. 50 with a score of 0.2666115417852803
-16. 61 with a score of 0.2382431378313779
-17. 24 with a score of 0.2214113507401366
-18. 45 with a score of 0.16267930220422686
-19. 16 with a score of 0.1521877862677442
-20. 7 with a score of 0.15216723010082175
-21. 73 with a score of 0.15148880789562805
-22. 66 with a score of 0.15101489245029717
-23. 69 with a score of 0.14642635478189378
-24. 41 with a score of 0.1457942586142422
-25. 72 with a score of 0.14156146491416857
-26. 46 with a score of 0.11714813142603435
-27. 49 with a score of 0.11129951941380284
-28. 44 with a score of 0.10818268199475642
-29. 55 with a score of 0.09888057906546448
-30. 56 with a score of 0.09854520241126229
-31. 51 with a score of 0.09854467029035979
-32. 30 with a score of 0.09850961906918324
-33. 40 with a score of 0.0980071507241346
-34. 25 with a score of 0.09323665128807952
-35. 5 with a score of 0.08142370878089897
-36. 32 with a score of 0.06604456022248088
-37. 59 with a score of 0.06463765764823412
-38. 70 with a score of 0.060504728342672544
-39. 64 with a score of 0.05789161913177469
-40. 27 with a score of 0.05697123657737963
-41. 60 with a score of 0.03895668201045518
-42. 19 with a score of 0.031202888486794828
-43. 12 with a score of 0.027240507141622787
-44. 43 with a score of 0.02724040670078825
-45. 67 with a score of 0.02396505874520155
-46. 14 with a score of 0.021856947489088185
-47. 26 with a score of 0.01690112792251396
-48. 10 with a score of 0.012527160320150487
-49. 68 with a score of 0.01185509543748888
-50. 1 with a score of 0.011573885191035398
-51. 35 with a score of 0.010136157826765236
-52. 54 with a score of 0.009235937846664787
-53. 21 with a score of 0.008164429146669481
-54. 20 with a score of 0.00816442567330919
-55. 33 with a score of 0.004032934764211679
-56. 48 with a score of 5.06226917305439e-08
-57. 22 with a score of 4.476779828316871e-11
-58. 15 with a score of 8.481668785007337e-13
-59. 36 with a score of 8.132804228701344e-13
-60. 11 with a score of 8.076554692247406e-13
-61. 28 with a score of 8.076541932426405e-13
-62. 39 with a score of 8.01511879947075e-13
-63. 52 with a score of 7.975667306586009e-13
-64. 74 with a score of 7.938921195736681e-13
-65. 4 with a score of 7.898912073834862e-13
-66. 9 with a score of 7.898908185183513e-13
-67. 47 with a score of 7.89890743040412e-13
-68. 31 with a score of 7.898907170508591e-13
-69. 13 with a score of 7.898904337147023e-13
-70. 8 with a score of 7.898904337147022e-13
-71. 17 with a score of 7.898904337147022e-13
-72. 23 with a score of 7.898904337147022e-13
-73. 53 with a score of 7.898904337147022e-13
-74. 37 with a score of 7.898904337147021e-13
-75. 18 with a score of 7.898897027522824e-13
-                   pre       rec       spe        f1       geo       iba       sup
-
-        0.0       0.66      0.80      0.84      0.73      0.78      0.59      2106
-        1.0       0.39      0.35      0.85      0.37      0.57      0.31      1594
-        2.0       0.39      0.30      0.88      0.34      0.57      0.31      1495
-        3.0       0.73      0.76      0.88      0.74      0.81      0.64      2119
-
-avg / total       0.57      0.59      0.86      0.57      0.70      0.49      7314
-
