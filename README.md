@@ -6,6 +6,7 @@ The implementation is based around a heavily modified and extended version of th
 ## Install
 Simply run 
 ```
+pip install -r requirements.txt
 python setup.py install
 ```
 
