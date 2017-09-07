@@ -28,7 +28,7 @@ The parameters of `rar.run` are as follows:
 * **k** (default: 5) This is the maximum size of subsets to be picked for relevance and redundancy estimation.
 * **runs** (default: number of features) This controls how many subsets are used to estimate relevance, i.e. the number of Monte Carlo estimations.
 * **split_iterations** (default: 3) This controls how many subsets are picked for the redundancy estimation phase, i.e. for each newly ranked feature.
-* **compensate_imbalance** (default: 3) Boolean value that controls whether to use wRaR or RaR. If true, a cost matrix compensating class imbalance is generated and used in the feature selection process. 
+* **compensate_imbalance** (default: False) Boolean value that controls whether to use wRaR or RaR. If true, a cost matrix compensating class imbalance is generated and used in the feature selection process. 
 * **weight_mod** (default: 1) Exponenent for compensation matrix. A higher exponent will result in a significantly higher "counterweight" to imbalance, while a lower one equalizes the weights. Might be useful for fine-tuning.
 * **cost_matrix** This is a custom dataframe that can be passed in order to be multiplied with the generated compensation matrix. It has only one row, and a column for each unique value in the target column.
 
