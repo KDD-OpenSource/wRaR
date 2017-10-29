@@ -1,6 +1,6 @@
 # Weighted Relevance and Redundancy Scoring
 
-This repository contains a Python 3 implementation of the wRaR algorithm for feature selection on imbalanced dataset. The algorithm is based on RaR (see references), itself based on [this paper](http://ieeexplore.ieee.org/abstract/document/6228154/).  
+This repository contains a Python 3 implementation of the wRaR algorithm for feature selection on imbalanced dataset. The full paper (bachelor's thesis) on this algorithm can be found [here](https://github.com/KDD-OpenSource/wRaR/blob/master/document.pdf). The algorithm is based on RaR (see references), itself based on [this paper](http://ieeexplore.ieee.org/abstract/document/6228154/).  
 The implementation is based around a heavily modified and extended version of this [HiCS implementation](https://github.com/KDD-OpenSource/fexum-hics). It uses the [Gurobi Optimizer](http://www.gurobi.com) for quadratic optimization estimating single-feature relevance, you must acquire a license to be able to use it (academic licenses should be free).
 
 ## Install
